@@ -10,7 +10,7 @@ import './Tab1.css';
 const temporalOptions = ['hourly', 'daily', 'monthly'];
 
 
-const Tab1 = () => {
+const Tab1 = ({data,setData}) => {
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
   const [startDate, setStartDate] =  useState('YYYY MM DD');
@@ -64,11 +64,10 @@ const Tab1 = () => {
     const response = fetch(apiUrl);
     const data = (await response).json();
     const info = await data;
-    const actualData =  info.properties.parameter.ALLSKY_SFC_SW_DWN;
-
+    setData(info);
+    
     localStorage.setItem( 'data', JSON.stringify(info));
     let retData = localStorage.getItem('data');
-    console.log('data = ', retData);
    // let test = JSON.parse(retData);
    // console.log('test data',test);
    history.push('/tab2')

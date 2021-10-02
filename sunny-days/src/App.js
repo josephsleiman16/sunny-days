@@ -1,4 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
+import { useState } from 'react';
 import {
   IonApp,
   IonIcon,
@@ -33,16 +34,20 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App = () => (
+const App = () => {
+  
+  const [data,setData] = useState();
+  
+  return (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/tab1">
-            <Tab1 />
+            <Tab1 data={data} setData={setData} />
           </Route>
           <Route exact path="/tab2">
-            <Tab2 />
+            <Tab2 data={data} setData={setData}/>
           </Route>
           <Route path="/tab3">
             <Tab3 />
@@ -68,6 +73,6 @@ const App = () => (
       </IonTabs>
     </IonReactRouter>
   </IonApp>
-);
+)};
 
 export default App;
