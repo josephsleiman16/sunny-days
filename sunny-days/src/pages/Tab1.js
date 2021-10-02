@@ -27,14 +27,15 @@ const Tab1 = ({data,setData}) => {
   console.log(todayDate);
   const [maxYear, setMaxYear] = useState(todayDate);
 
-  if(startDate && endDate && buttonState=="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
+  if(startDate && endDate && latitude && longitude && (startDate < endDate) && buttonState=="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
     setButtonState("false");
   }
-  if(buttonState=="false" && !(startDate && endDate && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180))){
+  if(buttonState=="false" && !(startDate && endDate && latitude && longitude && (startDate < endDate) && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180))){
     setButtonState("true");
   }
   console.log("display format = ", displayFormat);
-
+  console.log("Start: ", startDate);
+  console.log("End: ", endDate);
   function showPosition() {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -119,6 +120,7 @@ const Tab1 = ({data,setData}) => {
             <IonInput 
               type="number" 
               placeholder= "Value between -90 and 90"
+              value = {latitude}
               onIonChange={e=>setLatitude(parseFloat(e.detail.value))}
             ></IonInput>
 
@@ -136,6 +138,7 @@ const Tab1 = ({data,setData}) => {
             <IonInput 
               type="number"
               placeholder= "Value between -180 and 180"
+              value = {longitude}
               onIonChange={e=>setLongitude(parseFloat(e.detail.value))}
 
             ></IonInput>
