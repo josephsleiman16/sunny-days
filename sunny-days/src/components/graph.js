@@ -3,13 +3,16 @@ import { useState } from 'react';
 
 import { Line } from 'react-chartjs-2';
 
-const Graph  = ({data}) => {
+const Graph  = ({data, status, parameter}) => {
 
     if(!data){return (<IonPage></IonPage>)};
-    const timeLineData = data?.properties?.parameter?.ALLSKY_SFC_SW_DWN;
+    const timeLineData = data?.properties?.parameter[parameter]
 
+
+    console.log('time line data',timeLineData);
     const labels = Object.keys(timeLineData);
-    //daily YYYYMMDD = 8
+    let values = Object.values(timeLineData);
+
     //HOURLY YYYYMMDDHH = 10
     //Monthly YYYYmm = 6
 
@@ -22,7 +25,15 @@ const Graph  = ({data}) => {
     const years = labels.map(x => x.substring(0,4));
     const months = labels.map(x => parseInt(x.substring(4,6)));
     const theseMonths = months.map(x => monthNames[x-1]);
-    if (labels[0].length===8){
+    
+    if(status=="annually"){
+        let filterLabels = months.filter(x => x==13);
+        let filterYears = years.filter((x,i) => months[i]==13);
+        theLabels = filterYears.map((x,i) =>  x);
+        values = values.filter((x,i) => months[i]==13);
+
+    }
+    else if (labels[0].length===8){
         //daily
         const days = labels.map(x => parseInt(x.substring(6,8)));
         // date month year 
@@ -39,26 +50,35 @@ const Graph  = ({data}) => {
         //monthly
         let filterLabels = months.filter(x => x<13);
         let filterYears = years.filter((x,i) => months[i]<13);
-        console.log('test ',filterLabels);
         theLabels = filterLabels.map((x,i) => monthNames[x-1] +' '+filterYears[i]);
-
-        // [11,12,13,01,02]  [19,19,19,20,20]
-        //[11,12,01,02]  [19,19,19,20]
-   //     theLabels = theseMonths.map((x, i) =>  x + ' ' + years[i]);
-
+        values = values.filter((x,i) => months[i]<13);
     }
 
 
-    const values = Object.values(timeLineData);
 
     console.log(theLabels);
     console.log(values);
+    let graphLabel;
+    switch(parameter){
+        case "ALLSKY_SFC_SW_DWN":
+            graphLabel="Solar Radiance";
+            break;
+        case "TS":
+            graphLabel="Surface Temperature";
+            break;
+        case "CLRSKY_DAYS":
+            graphLabel="Clear Days"
+            break;
+        default:
+            graphLabel="Cloud Amount";
+            break;
 
+    }
     const state = {
     labels: theLabels,
     datasets: [ 
         {
-        label: 'Sunshine',
+        label: graphLabel, 
         fill: false,
         lineTension: 0.5,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',

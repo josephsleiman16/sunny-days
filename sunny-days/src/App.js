@@ -37,17 +37,18 @@ import './theme/variables.css';
 const App = () => {
   
   const [data,setData] = useState();
-  
+  const [status, setStatus] = useState('daily');
+  const [parameter, setParameter] = useState('ALLSKY_SFC_SW_DWN')
   return (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/tab1">
-            <Tab1 data={data} setData={setData} />
+            <Tab1 data={data} setData={setData} status={status} setStatus={setStatus} parameter={parameter} setParameter={setParameter} />
           </Route>
           <Route exact path="/tab2">
-            <Tab2 data={data} setData={setData}/>
+            <Tab2 data={data} setData={setData} status={status} parameter={parameter}/>
           </Route>
           <Route path="/tab3">
             <Tab3 />
