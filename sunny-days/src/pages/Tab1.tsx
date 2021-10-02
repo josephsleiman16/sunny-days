@@ -1,4 +1,4 @@
-import { IonButton , IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonButton , IonIcon, IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption } from '@ionic/react';
 import { SetStateAction, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 import ExploreContainer from '../components/ExploreContainer';
@@ -120,8 +120,8 @@ const Tab1: React.FC = () => {
         </IonList>
         
         <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton>
-        <IonButton color="primary" onClick={() => showPosition()}>Press me for logation</IonButton>
-
+        <IonButton color="secondary" onClick={() => showPosition()}>Use my location</IonButton>
+        <IonIcon name="navigate-circle-outline"></IonIcon>
       </IonContent>
     </IonPage>
   );
