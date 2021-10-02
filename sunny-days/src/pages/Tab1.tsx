@@ -1,5 +1,6 @@
 import { IonButton , IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption } from '@ionic/react';
 import { SetStateAction, useState } from 'react';
+import { act } from 'react-dom/test-utils';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 const temporalOptions = ['hourly', 'daily', 'monthly'];
@@ -14,6 +15,18 @@ const Tab1: React.FC = () => {
   const [displayFormat, setDisplayFormat] = useState<string>('YYYY MM DD');
 
   console.log("display format = ", displayFormat);
+
+  function showPosition() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+            console.log(positionInfo);
+        });
+    } else {
+        alert("Sorry, your browser does not support HTML5 geolocation.");
+    }
+}
+
   const changeDisplay = (e: { detail: { value: SetStateAction<string>; }; })=> {
     setTemporalRes(e.detail.value)
     if(e.detail.value === "monthly") {
@@ -25,19 +38,32 @@ const Tab1: React.FC = () => {
 
   } 
 
-  const fetchJSON= async function(tempRes: string,lon: number, lat: number, start: string, end: string,) {
-    start = start.replace(/-/g,'').slice(0,8);
-    end = end.replace(/-/g,'').slice(0,8);
+  const fetchJSON= async function(tempRes: string,lon: number, lat: number, start: string, end: string,displayFormat: string,) {
+ 
+
+    if(displayFormat.length >4) {
+      start = start.replace(/-/g,'').slice(0,8);
+      end = end.replace(/-/g,'').slice(0,8);
+    }
+    else{
+      start = start.replace(/-/g,'').slice(0,4);
+      end = end.replace(/-/g,'').slice(0,4);
+    }
+
+    console.log('date before edit: ',start);
+    console.log('date after edit ',start);
     let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + tempRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
-    let response = fetch(apiUrl);
-    let object = (await response).json();
-    console.log('data = ',object);
     console.log(apiUrl)
-    /*
-    monthly: YYYY
-    daily: YYYYMMDD
-    hourly: YYYYMMDD
-    */
+    const response = fetch(apiUrl);
+    const data = (await response).json();
+    const info = await data;
+    const actualData =  info.properties.parameter.ALLSKY_SFC_SW_DWN;
+
+    localStorage.setItem( 'data', JSON.stringify(info));
+    let retData = localStorage.getItem('data');
+    console.log('data = ', retData);
+   // let test = JSON.parse(retData);
+   // console.log('test data',test);
 
   }
   return (
@@ -93,7 +119,8 @@ const Tab1: React.FC = () => {
         </IonItem>
         </IonList>
         
-        <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate)}>Press me</IonButton>
+        <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton>
+        <IonButton color="primary" onClick={() => showPosition()}>Press me for logation</IonButton>
 
       </IonContent>
     </IonPage>

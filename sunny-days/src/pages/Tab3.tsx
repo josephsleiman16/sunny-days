@@ -19,22 +19,22 @@ const Tab3: React.FC = () => {
   // for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN.date:
   //   solarArray.append(val)
 
-  let locStatus; 
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition();
-    } else { 
-      locStatus = "Geolocation is not supported.";
-    }
-  }
-  function failedPosition(){
-    console.error("Position Error")
-  }
-  function showPosition(position: { coords: { latitude: string; longitude: string; }; }) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    locStatus = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+  // let locStatus; 
+  // function getLocation() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition();
+  //   } else { 
+  //     locStatus = "Geolocation is not supported.";
+  //   }
+  // }
+  // function failedPosition(){
+  //   console.error("Position Error")
+  // }
+  // function showPosition(position: { coords: { latitude: string; longitude: string; }; }) {
+  //   latitude = position.coords.latitude;
+  //   longitude = position.coords.longitude;
+  //   locStatus = "Latitude: " + position.coords.latitude + 
+  //   "<br>Longitude: " + position.coords.longitude;
   }
   return (
     <IonPage>
