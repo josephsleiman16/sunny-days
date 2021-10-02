@@ -26,7 +26,7 @@ const Tab1: React.FC = () => {
             console.log(positionInfo);
         });
     } else {
-        alert("Sorry, geolocation  inaccessible.");
+        alert("Sorry, geolocation inaccessible.");
     }
 }
 
