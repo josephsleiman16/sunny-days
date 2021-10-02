@@ -87,7 +87,7 @@ const Tab1 = () => {
         <IonList>
 
         <IonItem>
-            <IonLabel>Select temopral resolution</IonLabel>
+            <IonLabel>Select Temporal Resolution</IonLabel>
             <IonSelect value={temporalRes} okText="Okay" cancelText="Dismiss" 
             onIonChange={e => changeDisplay(e)}>
               
@@ -125,7 +125,6 @@ const Tab1 = () => {
           <IonLabel>Start Date ({displayFormat})</IonLabel>
           <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={startDate} onIonChange={e => setStartDate(e.detail.value)}></IonDatetime>
         </IonItem>
-
         
         <IonItem>
           <IonLabel>End Date ({displayFormat})</IonLabel>
@@ -133,20 +132,13 @@ const Tab1 = () => {
         </IonItem>
         </IonList>
         
-
-
           <IonFabButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>
             <IonIcon icon={searchOutline} />
           </IonFabButton>
 
-
-        
         {/* <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton> */}
         {/* <IonButton color="secondary" onClick={() => showPosition()}>Use my location</IonButton> */}
 
-
-
-        <IonIcon name="navigate-circle-outline"></IonIcon>
       </IonContent>
     </IonPage>
   );
