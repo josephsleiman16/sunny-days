@@ -1,13 +1,10 @@
 import { IonButton, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
-import { SetStateAction, useState } from 'react';
-import { act } from 'react-dom/test-utils';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
-import { navigateCircleOutline, locateOutline, pinOutline } from 'ionicons/icons';
+import { locateOutline, pinOutline } from 'ionicons/icons';
 
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
-const temporalOptions = ['hourly', 'daily', 'monthly'];
 
 
 const Tab1 = ({data,setData}) => {
@@ -18,8 +15,17 @@ const Tab1 = ({data,setData}) => {
   const [temporalRes, setTemporalRes] = useState('daily');
   const [displayFormat, setDisplayFormat] = useState('YYYY MM DD');
 	const history = useHistory()
-
   const [buttonState, setButtonState] =  useState("true");
+
+
+  let today = new Date();
+  let dd = today.getDate();
+  if(dd <10){dd= '0'+dd;};
+
+  const todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+dd;
+
+  console.log(todayDate);
+  const [maxYear, setMaxYear] = useState(todayDate);
 
   if(startDate && endDate && buttonState=="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
     setButtonState("false");
@@ -46,12 +52,15 @@ const Tab1 = ({data,setData}) => {
     setTemporalRes(e.detail.value)
     if(e.detail.value === "monthly") {
       setDisplayFormat("YYYY");
+      setMaxYear("2020");
     } else {
       setDisplayFormat("YYYY MM DD");
+      setMaxYear("2021");
     }
     console.log('longitude = ',longitude, 'start :',startDate);
 
   } 
+  
 
   const fetchJSON= async function(tempRes,lon, lat, start, end,displayFormat,) {
  
@@ -134,12 +143,12 @@ const Tab1 = ({data,setData}) => {
 
           <IonItem>
           <IonLabel>Start Date ({displayFormat})</IonLabel>
-          <IonDatetime displayFormat={displayFormat} placeholder="Select Date"  min="1981" value={startDate} onIonChange={e => setStartDate(e.detail.value)}></IonDatetime>
+          <IonDatetime displayFormat={displayFormat} placeholder="Select Date"  min="1981" max={maxYear} value={startDate} onIonChange={e => setStartDate(e.detail.value)}></IonDatetime>
         </IonItem>
         
         <IonItem>
           <IonLabel>End Date ({displayFormat})</IonLabel>
-          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" min="1981" value={endDate} onIonChange={e => setEndDate(e.detail.value)}></IonDatetime>
+          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" min="1981"max={maxYear} value={endDate} onIonChange={e => setEndDate(e.detail.value)}></IonDatetime>
         </IonItem>
         </IonList>
         
