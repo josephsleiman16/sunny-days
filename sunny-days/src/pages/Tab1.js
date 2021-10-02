@@ -8,13 +8,13 @@ import './Tab1.css';
 const temporalOptions = ['hourly', 'daily', 'monthly'];
 
 
-const Tab1: React.FC = () => {
-  const [longitude, setLongitude] = useState<number>(0);
-  const [latitude, setLatitude] = useState<number>(0);
-  const [startDate, setStartDate] =  useState<string>('YYYY MM DD');
-  const [endDate, setEndDate] =  useState<string>('YYYY MM DD');
-  const [temporalRes, setTemporalRes] = useState<string>('daily');
-  const [displayFormat, setDisplayFormat] = useState<string>('YYYY MM DD');
+const Tab1 = () => {
+  const [longitude, setLongitude] = useState(0);
+  const [latitude, setLatitude] = useState(0);
+  const [startDate, setStartDate] =  useState('YYYY MM DD');
+  const [endDate, setEndDate] =  useState('YYYY MM DD');
+  const [temporalRes, setTemporalRes] = useState('daily');
+  const [displayFormat, setDisplayFormat] = useState('YYYY MM DD');
 	const history = useHistory()
 
   console.log("display format = ", displayFormat);
@@ -32,7 +32,7 @@ const Tab1: React.FC = () => {
     }
 }
 
-  const changeDisplay = (e: { detail: { value: SetStateAction<string>; }; })=> {
+  const changeDisplay = (e)=> {
     setTemporalRes(e.detail.value)
     if(e.detail.value === "monthly") {
       setDisplayFormat("YYYY");
@@ -43,7 +43,7 @@ const Tab1: React.FC = () => {
 
   } 
 
-  const fetchJSON= async function(tempRes: string,lon: number, lat: number, start: string, end: string,displayFormat: string,) {
+  const fetchJSON= async function(tempRes,lon, lat, start, end,displayFormat,) {
  
 
     if(displayFormat.length >4) {
@@ -100,7 +100,7 @@ const Tab1: React.FC = () => {
             <IonInput 
               type="number" 
               value={latitude}
-              onIonChange={e=>setLatitude(parseFloat(e.detail.value!))}
+              onIonChange={e=>setLatitude(parseFloat(e.detail.value))}
             ></IonInput>
           </IonItem>
 
@@ -109,20 +109,20 @@ const Tab1: React.FC = () => {
             <IonInput 
               type="number"
               value={longitude}
-              onIonChange={e=>setLongitude(parseFloat(e.detail.value!))}
+              onIonChange={e=>setLongitude(parseFloat(e.detail.value))}
 
             ></IonInput>
           </IonItem>
 
           <IonItem>
           <IonLabel>Start Date ({displayFormat})</IonLabel>
-          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={startDate} onIonChange={e => setStartDate(e.detail.value!)}></IonDatetime>
+          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={startDate} onIonChange={e => setStartDate(e.detail.value)}></IonDatetime>
         </IonItem>
 
         
         <IonItem>
           <IonLabel>End Date ({displayFormat})</IonLabel>
-          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={endDate} onIonChange={e => setEndDate(e.detail.value!)}></IonDatetime>
+          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={endDate} onIonChange={e => setEndDate(e.detail.value)}></IonDatetime>
         </IonItem>
         </IonList>
         
