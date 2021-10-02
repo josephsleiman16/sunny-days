@@ -35,7 +35,7 @@ const Tab3: React.FC = () => {
   //   longitude = position.coords.longitude;
   //   locStatus = "Latitude: " + position.coords.latitude + 
   //   "<br>Longitude: " + position.coords.longitude;
-  }
+  // }
   return (
     <IonPage>
       <IonHeader>
