@@ -13,11 +13,17 @@ const temporalOptions = ['hourly', 'daily', 'monthly'];
 const Tab1 = () => {
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
-  const [startDate, setStartDate] =  useState('YYYY MM DD');
-  const [endDate, setEndDate] =  useState('YYYY MM DD');
+  const [startDate, setStartDate] =  useState(null);
+  const [endDate, setEndDate] =  useState(null);
   const [temporalRes, setTemporalRes] = useState('daily');
   const [displayFormat, setDisplayFormat] = useState('YYYY MM DD');
 	const history = useHistory()
+
+  const [buttonState, setButtonState] =  useState("true");
+
+  if(startDate && endDate && buttonState == "true") {
+    setButtonState("false")
+  }
 
   console.log("display format = ", displayFormat);
 
@@ -134,10 +140,10 @@ const Tab1 = () => {
         </IonList>
         
 
+          <IonRow className="ion-justify-content-center">
+            <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>View Results</IonButton>    
+          </IonRow>
 
-          <IonFabButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>
-            <IonIcon icon={searchOutline} />
-          </IonFabButton>
 
 
         
