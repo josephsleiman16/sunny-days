@@ -17,13 +17,13 @@ const Tab3: React.FC = () => {
   let response = fetch(apiUrl);
   let obj = JSON.parse(response);
 
-  let solarArray = []; //NOTE: units of solar irradiance are kW-hr/m^2/day
-  let dateArray = [];
-  for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN:
-    dateArray.append(val)
+  // let solarArray = []; //NOTE: units of solar irradiance are kW-hr/m^2/day
+  // let dateArray = [];
+  // for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN:
+  //   dateArray.append(val)
 
-  for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN.date:
-    solarArray.append(val)
+  // for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN.date:
+  //   solarArray.append(val)
 
   let locStatus; 
   function getLocation() {
