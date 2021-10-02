@@ -79,7 +79,7 @@ const Tab1 = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Sunny day input</IonTitle>
+          <IonTitle>Sunny Days</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -96,6 +96,7 @@ const Tab1 = () => {
               <IonSelectOption value="monthly">Monthly & Annual</IonSelectOption>
             </IonSelect>
           </IonItem>
+
 
           <IonItem>
             <IonLabel position="fixed">Latitude</IonLabel>
