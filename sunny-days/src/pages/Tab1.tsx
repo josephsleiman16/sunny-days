@@ -26,7 +26,7 @@ const Tab1: React.FC = () => {
             console.log(positionInfo);
         });
     } else {
-        alert("Sorry, your browser does not support HTML5 geolocation.");
+        alert("Sorry, geolocation  inaccessible.");
     }
 }
 
