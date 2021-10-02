@@ -21,8 +21,10 @@ const Tab1 = () => {
 
   const [buttonState, setButtonState] =  useState("true");
 
-  if(startDate && endDate && buttonState == "true") {
-    setButtonState("false")
+  if((startDate && endDate && buttonState == "true") && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
+    setButtonState("false");
+  } else {
+    setButtonState("true");
   }
 
   console.log("display format = ", displayFormat);

@@ -14,7 +14,8 @@ const Tab3 = () => {
   //endDate = string format: YYYYMMDD
   //Maybe if solar radiance < 0 getting rid of datapoint or not plotting it
   //Disable search button unless all fields correctly selected -- valid date selected, valid long/lat
-  // "Location" - use location, 
+  // "Location" - use gps, pinpoint on map
+  //RESTRICT DATE TO 1981
 
   return (
     <IonPage>
