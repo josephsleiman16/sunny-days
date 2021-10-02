@@ -1,7 +1,9 @@
-import { IonButton , IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
+import { IonButton, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 import { SetStateAction, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 import { useHistory } from 'react-router-dom'
+
+import { navigateCircleOutline, searchOutline } from 'ionicons/icons';
 
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
@@ -102,6 +104,10 @@ const Tab1 = () => {
               value={latitude}
               onIonChange={e=>setLatitude(parseFloat(e.detail.value))}
             ></IonInput>
+
+            <IonButton color="secondary" onClick={() => showPosition()}>
+              <IonIcon icon={navigateCircleOutline} />
+            </IonButton>
           </IonItem>
 
           <IonItem>
@@ -126,10 +132,19 @@ const Tab1 = () => {
         </IonItem>
         </IonList>
         
-      
+
+
+          <IonFabButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>
+            <IonIcon icon={searchOutline} />
+          </IonFabButton>
+
+
         
-        <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton>
-        <IonButton color="secondary" onClick={() => showPosition()}>Use my location</IonButton>
+        {/* <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton> */}
+        {/* <IonButton color="secondary" onClick={() => showPosition()}>Use my location</IonButton> */}
+
+
+
         <IonIcon name="navigate-circle-outline"></IonIcon>
       </IonContent>
     </IonPage>
