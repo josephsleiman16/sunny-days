@@ -14,7 +14,10 @@ const Graph  = ({data, status, parameter}) => {
     let values = Object.values(timeLineData);
 
     //HOURLY YYYYMMDDHH = 10
-    //Monthly YYYYmm = 6
+    //DAILY YYYYMMDD = 8
+    //WEEKLY YYYYMMDD = 8
+    //Monthly YYYYMM = 6
+    //Annually YYYYMM = 6
 
     const monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
                         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
@@ -27,12 +30,23 @@ const Graph  = ({data, status, parameter}) => {
     const theseMonths = months.map(x => monthNames[x-1]);
     
     if(status=="annually"){
+        //annually
         let filterLabels = months.filter(x => x==13);
         let filterYears = years.filter((x,i) => months[i]==13);
         theLabels = filterYears.map((x,i) =>  x);
         values = values.filter((x,i) => months[i]==13);
 
     }
+    else if (status=="weekly"){
+      //weekly (YYYYMMDD)
+      let weekvals;
+      const days = labels.map(x => parseInt(x.substring(6,8)));
+      weekvals = 
+      startDate = labels[0];
+      endDate = labels[-1];
+
+      theLabels = theseMonths.map((x, i) => days[i]+' '+x + ' ' + years[i]);
+  }
     else if (labels[0].length===8){
         //daily
         const days = labels.map(x => parseInt(x.substring(6,8)));
@@ -45,7 +59,6 @@ const Graph  = ({data, status, parameter}) => {
         const hours = labels.map( x=> parseInt(x.substring(8,10)))         
         const hoursTrue = hours.map( x=> x>=12 ? (x==12? x+'pm': (x-12)+'pm') : (x==0 ? x+12+'am': x+'am'));    
         theLabels = theseMonths.map((x, i) =>  hoursTrue[i]+' '+ days[i]+' '+x + ' ' + years[i]);
-     
     }else{
         //monthly
         let filterLabels = months.filter(x => x<13);
@@ -53,8 +66,6 @@ const Graph  = ({data, status, parameter}) => {
         theLabels = filterLabels.map((x,i) => monthNames[x-1] +' '+filterYears[i]);
         values = values.filter((x,i) => months[i]<13);
     }
-
-
 
     console.log(theLabels);
     console.log(values);

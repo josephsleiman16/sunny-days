@@ -14,7 +14,7 @@ const Tab3 = () => {
   //endDate = string format: YYYYMMDD
 
   //Maybe if solar radiance < 0 getting rid of datapoint or not plotting it
-  //Disable search button unless all fields correctly selected -- valid date selected, valid long/lat
+  //Disable search button unless all fields correctly selected -- valid date selected, valid long/lat -- done
   // "Location" - use gps, pinpoint on map
   //RESTRICT DATE TO 1981 -- done
   //Hourly --- Wh/m^2, Monthly or Daily --- kWh/m^2/day 
