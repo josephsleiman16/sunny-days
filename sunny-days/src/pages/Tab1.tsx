@@ -26,15 +26,13 @@ const Tab1: React.FC = () => {
   } 
 
   const fetchJSON= async function(tempRes: string,lon: number, lat: number, start: string, end: string,) {
-    console.log('date before edit: ',start);
     start = start.replace(/-/g,'').slice(0,8);
-    console.log('date after edit ',start);
     end = end.replace(/-/g,'').slice(0,8);
     let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + tempRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
     let response = fetch(apiUrl);
     let object = (await response).json();
     console.log('data = ',object);
-
+    console.log(apiUrl)
     /*
     monthly: YYYY
     daily: YYYYMMDD
