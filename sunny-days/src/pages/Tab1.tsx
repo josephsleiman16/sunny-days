@@ -15,6 +15,18 @@ const Tab1: React.FC = () => {
   const [displayFormat, setDisplayFormat] = useState<string>('YYYY MM DD');
 
   console.log("display format = ", displayFormat);
+
+  function showPosition() {
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+            console.log(positionInfo);
+        });
+    } else {
+        alert("Sorry, your browser does not support HTML5 geolocation.");
+    }
+}
+
   const changeDisplay = (e: { detail: { value: SetStateAction<string>; }; })=> {
     setTemporalRes(e.detail.value)
     if(e.detail.value === "monthly") {
@@ -56,7 +68,7 @@ const Tab1: React.FC = () => {
   }
   return (
     <IonPage>
-      <IonHeader>s
+      <IonHeader>
         <IonToolbar>
           <IonTitle>Sunny day input</IonTitle>
         </IonToolbar>
@@ -108,6 +120,7 @@ const Tab1: React.FC = () => {
         </IonList>
         
         <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton>
+        <IonButton color="primary" onClick={() => showPosition()}>Press me for logation</IonButton>
 
       </IonContent>
     </IonPage>
