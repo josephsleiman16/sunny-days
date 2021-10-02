@@ -1,4 +1,4 @@
-import { IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonButton , IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption } from '@ionic/react';
 import { SetStateAction, useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
@@ -8,10 +8,10 @@ const temporalOptions = ['hourly', 'daily', 'monthly'];
 const Tab1: React.FC = () => {
   const [longitude, setLongitude] = useState<number>(0);
   const [latitude, setLatitude] = useState<number>(0);
-  const [startDate, setStartDate] =  useState<string>('02 10 2021');
-  const [endDate, setEndDate] =  useState<string>('02 10 2021');
+  const [startDate, setStartDate] =  useState<string>('YYYY MM DD');
+  const [endDate, setEndDate] =  useState<string>('YYYY MM DD');
   const [temporalRes, setTemporalRes] = useState<string>('daily');
-  const [displayFormat, setDisplayFormat] = useState<string>('MM DD YYYY');
+  const [displayFormat, setDisplayFormat] = useState<string>('YYYY MM DD');
 
   console.log("display format = ", displayFormat);
   const changeDisplay = (e: { detail: { value: SetStateAction<string>; }; })=> {
@@ -19,8 +19,27 @@ const Tab1: React.FC = () => {
     if(e.detail.value === "monthly") {
       setDisplayFormat("YYYY");
     } else {
-      setDisplayFormat("MM DD YYYY");
+      setDisplayFormat("YYYY MM DD");
     }
+    console.log('longitude = ',longitude, 'start :',startDate);
+
+  } 
+
+  const fetchJSON= async function(tempRes: string,lon: number, lat: number, start: string, end: string,) {
+    console.log('date before edit: ',start);
+    start = start.replace(/-/g,'').slice(0,8);
+    console.log('date after edit ',start);
+    end = end.replace(/-/g,'').slice(0,8);
+    let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + tempRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
+    let response = fetch(apiUrl);
+    let object = (await response).json();
+    console.log('data = ',object);
+
+    /*
+    monthly: YYYY
+    daily: YYYYMMDD
+    hourly: YYYYMMDD
+    */
 
   }
   return (
@@ -50,7 +69,7 @@ const Tab1: React.FC = () => {
             <IonInput 
               type="number" 
               value={latitude}
-              onIonChange={e=>setLatitude(parseInt(e.detail.value!, 10))}
+              onIonChange={e=>setLatitude(parseFloat(e.detail.value!))}
             ></IonInput>
           </IonItem>
 
@@ -59,7 +78,7 @@ const Tab1: React.FC = () => {
             <IonInput 
               type="number"
               value={longitude}
-              onIonChange={e=>setLongitude(parseInt(e.detail.value!, 10))}
+              onIonChange={e=>setLongitude(parseFloat(e.detail.value!))}
 
             ></IonInput>
           </IonItem>
@@ -74,10 +93,9 @@ const Tab1: React.FC = () => {
           <IonLabel>End Date ({displayFormat})</IonLabel>
           <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={endDate} onIonChange={e => setEndDate(e.detail.value!)}></IonDatetime>
         </IonItem>
-
-
         </IonList>
         
+        <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate)}>Press me</IonButton>
 
       </IonContent>
     </IonPage>

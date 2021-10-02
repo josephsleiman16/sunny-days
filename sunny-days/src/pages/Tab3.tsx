@@ -8,17 +8,17 @@ const Tab3: React.FC = () => {
   //longitude = string from -180 to 180 with 4 decimal places
   //startDate = string format: YYYYMMDD
   //endDate = string format: YYYYMMDD
-  let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + temporalRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + longitude + '&latitude=' + latitude + '&start=' + startDate + '&end=' + endDate + '&format=JSON';
-  let json = fetch(apiUrl);
-  let obj = JSON.parse(json);
+  // let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + temporalRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + longitude + '&latitude=' + latitude + '&start=' + startDate + '&end=' + endDate + '&format=JSON';
+  // let json = fetch(apiUrl);
+  // let obj = JSON.parse(json);
 
-  let solarArray = []; //NOTE: units of solar irradiance are kW-hr/m^2/day
-  let dateArray = [];
-  for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN:
-    dateArray.append(val)
+  // let solarArray = []; //NOTE: units of solar irradiance are kW-hr/m^2/day
+  // let dateArray = [];
+  // for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN:
+  //   dateArray.append(val)
 
-  for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN.date:
-    solarArray.append(val)
+  // for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN.date:
+  //   solarArray.append(val)
 
   return (
     <IonPage>
