@@ -54,6 +54,7 @@ const Tab1 = ({data,setData}) => {
     if(e.detail.value === "monthly") {
       setDisplayFormat("YYYY");
       setMaxYear("2020");
+      if (endDate.includes("2021")) {setEndDate("2020");};
     } else {
       setDisplayFormat("YYYY MM DD");
       setMaxYear("2021");
