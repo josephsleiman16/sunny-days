@@ -8,14 +8,14 @@ const Tab3: React.FC = () => {
   //longitude = string from -180 to 180 with 4 decimal places
   //startDate = string format: YYYYMMDD
   //endDate = string format: YYYYMMDD
-  let latitude;
-  let longitude;
-  let temporalRes;
-  let startDate;
-  let endDate;
-  let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + temporalRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + longitude + '&latitude=' + latitude + '&start=' + startDate + '&end=' + endDate + '&format=JSON';
-  let response = fetch(apiUrl);
-  let obj = JSON.parse(response);
+  // let latitude;
+  // let longitude;
+  // let temporalRes;
+  // let startDate;
+  // let endDate;
+  // let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + temporalRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + longitude + '&latitude=' + latitude + '&start=' + startDate + '&end=' + endDate + '&format=JSON';
+  // let response = fetch(apiUrl);
+  // let obj = JSON.parse(response);
 
   // let solarArray = []; //NOTE: units of solar irradiance are kW-hr/m^2/day
   // let dateArray = [];
@@ -25,21 +25,21 @@ const Tab3: React.FC = () => {
   // for val in obj.properties.parameter.ALLSKY_SFC_SW_DWN.date:
   //   solarArray.append(val)
 
-  let locStatus; 
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-      locStatus = "Geolocation is not supported.";
-    }
-  }
+  // let locStatus; 
+  // function getLocation() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(showPosition);
+  //   } else { 
+  //     locStatus = "Geolocation is not supported.";
+  //   }
+  // }
   
-  function showPosition(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    locStatus = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
-  }
+  // function showPosition(position) {
+  //   latitude = position.coords.latitude;
+  //   longitude = position.coords.longitude;
+  //   locStatus = "Latitude: " + position.coords.latitude + 
+  //   "<br>Longitude: " + position.coords.longitude;
+  // }
   return (
     <IonPage>
       <IonHeader>

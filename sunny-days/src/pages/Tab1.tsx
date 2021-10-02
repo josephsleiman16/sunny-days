@@ -1,5 +1,6 @@
 import { IonButton , IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption } from '@ionic/react';
 import { SetStateAction, useState } from 'react';
+import { act } from 'react-dom/test-utils';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 const temporalOptions = ['hourly', 'daily', 'monthly'];
@@ -36,7 +37,7 @@ const Tab1: React.FC = () => {
       start = start.replace(/-/g,'').slice(0,4);
       end = end.replace(/-/g,'').slice(0,4);
     }
-    
+
     console.log('date before edit: ',start);
     console.log('date after edit ',start);
     let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + tempRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
@@ -44,15 +45,18 @@ const Tab1: React.FC = () => {
     const response = fetch(apiUrl);
     const data = (await response).json();
     const info = await data;
+    const actualData =  info.properties.parameter.ALLSKY_SFC_SW_DWN;
 
-    console.log(info)
-    console.log(info.type)
-
+    localStorage.setItem( 'data', JSON.stringify(info));
+    let retData = localStorage.getItem('data');
+    console.log('data = ', retData);
+   // let test = JSON.parse(retData);
+   // console.log('test data',test);
 
   }
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader>s
         <IonToolbar>
           <IonTitle>Sunny day input</IonTitle>
         </IonToolbar>
