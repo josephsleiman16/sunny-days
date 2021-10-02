@@ -21,12 +21,12 @@ const Tab1 = ({data,setData}) => {
 
   const [buttonState, setButtonState] =  useState("true");
 
-  if((startDate && endDate && buttonState == "true") && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
+  if(startDate && endDate && buttonState=="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
     setButtonState("false");
-  } else {
+  }
+  if(buttonState=="false" && !(startDate && endDate && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180))){
     setButtonState("true");
   }
-
   console.log("display format = ", displayFormat);
 
   function showPosition() {
