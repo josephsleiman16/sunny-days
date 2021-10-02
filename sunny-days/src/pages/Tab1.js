@@ -3,7 +3,7 @@ import { SetStateAction, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 import { useHistory } from 'react-router-dom'
 
-import { navigateCircleOutline, searchOutline } from 'ionicons/icons';
+import { navigateCircleOutline, locateOutline, pinOutline } from 'ionicons/icons';
 
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
@@ -112,8 +112,12 @@ const Tab1 = () => {
               onIonChange={e=>setLatitude(parseFloat(e.detail.value))}
             ></IonInput>
 
+            <IonButton color="danger">
+              <IonIcon icon={pinOutline} />
+            </IonButton>
+
             <IonButton color="secondary" onClick={() => showPosition()}>
-              <IonIcon icon={navigateCircleOutline} />
+              <IonIcon icon={locateOutline} />
             </IonButton>
           </IonItem>
 
