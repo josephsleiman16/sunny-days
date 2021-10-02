@@ -24,6 +24,8 @@ const Tab1: React.FC = () => {
         navigator.geolocation.getCurrentPosition(function(position) {
             var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
             console.log(positionInfo);
+            setLongitude(position.coords.longitude);
+            setLatitude(position.coords.latitude);
         });
     } else {
         alert("Sorry, geolocation inaccessible.");
