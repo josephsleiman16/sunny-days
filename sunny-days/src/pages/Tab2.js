@@ -8,7 +8,7 @@ const Tab2 =({data,setData, status, parameter}) => {
   const dataString = localStorage.getItem('data');
   if (!dataString) {return (<IonPage></IonPage>)};
   //const data = JSON.parse(dataString);
-
+  const fixedParameter = parameter;
   return (
     <IonPage>
       <IonHeader>
@@ -25,7 +25,7 @@ const Tab2 =({data,setData, status, parameter}) => {
         <Graph
           data={data}
           status={status}
-          parameter={parameter}
+          parameter={fixedParameter}
           
         />
         {/* <ExploreContainer name="Tab 2 page" /> */}

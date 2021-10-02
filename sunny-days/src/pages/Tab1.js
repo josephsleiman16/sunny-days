@@ -55,13 +55,11 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
       setDisplayFormat("YYYY");
       setMaxYear("2020");
       if (endDate && endDate.includes("2021")) {setEndDate("2020");};
-      if(e.detail.value=="annually"){
-        setStatus("annually");
-      };
     } else {
       setDisplayFormat("YYYY MM DD");
       setMaxYear("2021");
     }
+    setStatus(e.detail.value);
 
     if(e.detail.value=="hourly"){
       setClearSkyDisable(true);
@@ -87,15 +85,15 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
     console.log('date before edit: ',start);
     console.log('date after edit ',start);
-    let apiUrl;
-    if(status=="annually"){
-      apiUrl = 'https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=ALLSKY_SFC_SW_DWN,TS,CLOUD_AMT,CLRSKY_DAYS&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
 
-    }
-    else{
-      apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + tempRes + '/point?parameters=ALLSKY_SFC_SW_DWN,TS,CLOUD_AMT,CLRSKY_DAYS&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
+    let res;
+    if (status=="weekly"){res="daily";}
+    else if (status=="annually"){res = "monthly";}
+    else{res=tempRes;};
 
-    }
+    let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + res + '/point?parameters='+ parameter +'&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
+
+    
     console.log(apiUrl)
     const response = fetch(apiUrl);
     const data = (await response).json();
@@ -135,6 +133,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
             onIonChange={e => changeDisplay(e)}>
               
               <IonSelectOption value="hourly" disabled={hourlyDisable} >Hourly</IonSelectOption>
+              <IonSelectOption value="weekly" >Weekly</IonSelectOption>
               <IonSelectOption value="daily" >Daily</IonSelectOption>
               <IonSelectOption value="monthly">Monthly</IonSelectOption>
               <IonSelectOption value="annually">Annually</IonSelectOption>
