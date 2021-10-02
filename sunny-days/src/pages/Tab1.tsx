@@ -25,21 +25,29 @@ const Tab1: React.FC = () => {
 
   } 
 
-  const fetchJSON= async function(tempRes: string,lon: number, lat: number, start: string, end: string,) {
-    console.log('date before edit: ',start);
-    start = start.replace(/-/g,'').slice(0,8);
-    console.log('date after edit ',start);
-    end = end.replace(/-/g,'').slice(0,8);
-    let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + tempRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
-    let response = fetch(apiUrl);
-    let object = (await response).json();
-    console.log('data = ',object);
+  const fetchJSON= async function(tempRes: string,lon: number, lat: number, start: string, end: string,displayFormat: string,) {
+ 
 
-    /*
-    monthly: YYYY
-    daily: YYYYMMDD
-    hourly: YYYYMMDD
-    */
+    if(displayFormat.length >4) {
+      start = start.replace(/-/g,'').slice(0,8);
+      end = end.replace(/-/g,'').slice(0,8);
+    }
+    else{
+      start = start.replace(/-/g,'').slice(0,4);
+      end = end.replace(/-/g,'').slice(0,4);
+    }
+    
+    console.log('date before edit: ',start);
+    console.log('date after edit ',start);
+    let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + tempRes + '/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
+    console.log(apiUrl)
+    const response = fetch(apiUrl);
+    const data = (await response).json();
+    const info = await data;
+
+    console.log(info)
+    console.log(info.type)
+
 
   }
   return (
@@ -95,7 +103,7 @@ const Tab1: React.FC = () => {
         </IonItem>
         </IonList>
         
-        <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate)}>Press me</IonButton>
+        <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton>
 
       </IonContent>
     </IonPage>
