@@ -26,7 +26,7 @@ const Tab1: React.FC = () => {
             console.log(positionInfo);
         });
     } else {
-        alert("Sorry, your browser does not support HTML5 geolocation.");
+        alert("Sorry, geolocation inaccessible.");
     }
 }
 
@@ -127,11 +127,8 @@ const Tab1: React.FC = () => {
       
         
         <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton>
-        
-       
-        <IonButton color="primary" onClick={() => showPosition()}>Press me for logation</IonButton>
-        <IonIcon name="star">test</IonIcon>
-
+        <IonButton color="secondary" onClick={() => showPosition()}>Use my location</IonButton>
+        <IonIcon name="navigate-circle-outline"></IonIcon>
       </IonContent>
     </IonPage>
   );
