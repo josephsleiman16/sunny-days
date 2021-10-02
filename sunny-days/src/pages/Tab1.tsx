@@ -1,6 +1,8 @@
-import { IonButton , IonIcon, IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonButton , IonContent, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 import { SetStateAction, useState } from 'react';
 import { act } from 'react-dom/test-utils';
+import { useHistory } from 'react-router-dom'
+
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 const temporalOptions = ['hourly', 'daily', 'monthly'];
@@ -13,6 +15,7 @@ const Tab1: React.FC = () => {
   const [endDate, setEndDate] =  useState<string>('YYYY MM DD');
   const [temporalRes, setTemporalRes] = useState<string>('daily');
   const [displayFormat, setDisplayFormat] = useState<string>('YYYY MM DD');
+	const history = useHistory()
 
   console.log("display format = ", displayFormat);
 
@@ -64,6 +67,8 @@ const Tab1: React.FC = () => {
     console.log('data = ', retData);
    // let test = JSON.parse(retData);
    // console.log('test data',test);
+   history.push('/tab2')
+
 
   }
   return (
@@ -118,6 +123,8 @@ const Tab1: React.FC = () => {
           <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={endDate} onIonChange={e => setEndDate(e.detail.value!)}></IonDatetime>
         </IonItem>
         </IonList>
+        
+      
         
         <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton>
         <IonButton color="secondary" onClick={() => showPosition()}>Use my location</IonButton>
