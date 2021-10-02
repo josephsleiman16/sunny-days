@@ -1,5 +1,8 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon} from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
+
+import { navigateCircleOutline } from 'ionicons/icons';
+
 import './Tab3.css';
 
 const Tab3 = () => {
@@ -23,6 +26,7 @@ const Tab3 = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 3 page" />
+        <IonIcon icon={navigateCircleOutline}/>
 
       </IonContent>
     </IonPage>
