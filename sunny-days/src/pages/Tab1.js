@@ -3,7 +3,7 @@ import { SetStateAction, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 import { useHistory } from 'react-router-dom'
 
-import { navigateCircleOutline, searchOutline } from 'ionicons/icons';
+import { navigateCircleOutline, locateOutline, pinOutline } from 'ionicons/icons';
 
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
@@ -13,11 +13,17 @@ const temporalOptions = ['hourly', 'daily', 'monthly'];
 const Tab1 = ({data,setData}) => {
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
-  const [startDate, setStartDate] =  useState('YYYY MM DD');
-  const [endDate, setEndDate] =  useState('YYYY MM DD');
+  const [startDate, setStartDate] =  useState(null);
+  const [endDate, setEndDate] =  useState(null);
   const [temporalRes, setTemporalRes] = useState('daily');
   const [displayFormat, setDisplayFormat] = useState('YYYY MM DD');
 	const history = useHistory()
+
+  const [buttonState, setButtonState] =  useState("true");
+
+  if(startDate && endDate && buttonState == "true") {
+    setButtonState("false")
+  }
 
   console.log("display format = ", displayFormat);
 
@@ -86,7 +92,7 @@ const Tab1 = ({data,setData}) => {
         <IonList>
 
         <IonItem>
-            <IonLabel>Select temopral resolution</IonLabel>
+            <IonLabel>Select Temporal Resolution</IonLabel>
             <IonSelect value={temporalRes} okText="Okay" cancelText="Dismiss" 
             onIonChange={e => changeDisplay(e)}>
               
@@ -105,8 +111,12 @@ const Tab1 = ({data,setData}) => {
               onIonChange={e=>setLatitude(parseFloat(e.detail.value))}
             ></IonInput>
 
+            <IonButton color="danger">
+              <IonIcon icon={pinOutline} />
+            </IonButton>
+
             <IonButton color="secondary" onClick={() => showPosition()}>
-              <IonIcon icon={navigateCircleOutline} />
+              <IonIcon icon={locateOutline} />
             </IonButton>
           </IonItem>
 
@@ -124,7 +134,6 @@ const Tab1 = ({data,setData}) => {
           <IonLabel>Start Date ({displayFormat})</IonLabel>
           <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={startDate} onIonChange={e => setStartDate(e.detail.value)}></IonDatetime>
         </IonItem>
-
         
         <IonItem>
           <IonLabel>End Date ({displayFormat})</IonLabel>
@@ -133,19 +142,14 @@ const Tab1 = ({data,setData}) => {
         </IonList>
         
 
+          <IonRow className="ion-justify-content-center">
+            <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>View Results</IonButton>    
+          </IonRow>
 
-          <IonFabButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>
-            <IonIcon icon={searchOutline} />
-          </IonFabButton>
 
-
-        
         {/* <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton> */}
         {/* <IonButton color="secondary" onClick={() => showPosition()}>Use my location</IonButton> */}
 
-
-
-        <IonIcon name="navigate-circle-outline"></IonIcon>
       </IonContent>
     </IonPage>
   );
