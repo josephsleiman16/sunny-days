@@ -8,6 +8,7 @@ const Graph  = ({data, status, parameter}) => {
     if(!data){return (<IonPage></IonPage>)};
     const timeLineData = data?.properties?.parameter[parameter]
 
+    if(!timeLineData){return (<IonPage></IonPage>)};
 
     console.log('time line data',timeLineData);
     const labels = Object.keys(timeLineData);
