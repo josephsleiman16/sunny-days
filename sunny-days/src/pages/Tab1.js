@@ -11,8 +11,8 @@ const temporalOptions = ['hourly', 'daily', 'monthly'];
 
 
 const Tab1 = ({data,setData}) => {
-  const [longitude, setLongitude] = useState(0);
-  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(null);
+  const [latitude, setLatitude] = useState(null);
   const [startDate, setStartDate] =  useState(null);
   const [endDate, setEndDate] =  useState(null);
   const [temporalRes, setTemporalRes] = useState('daily');
@@ -109,7 +109,7 @@ const Tab1 = ({data,setData}) => {
             <IonLabel position="fixed">Latitude</IonLabel>
             <IonInput 
               type="number" 
-              value={latitude}
+              placeholder= "Value between -90 and 90"
               onIonChange={e=>setLatitude(parseFloat(e.detail.value))}
             ></IonInput>
 
@@ -126,7 +126,7 @@ const Tab1 = ({data,setData}) => {
             <IonLabel position="fixed">Longitude</IonLabel>
             <IonInput 
               type="number"
-              value={longitude}
+              placeholder= "Value between -180 and 180"
               onIonChange={e=>setLongitude(parseFloat(e.detail.value))}
 
             ></IonInput>
@@ -134,12 +134,12 @@ const Tab1 = ({data,setData}) => {
 
           <IonItem>
           <IonLabel>Start Date ({displayFormat})</IonLabel>
-          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={startDate} onIonChange={e => setStartDate(e.detail.value)}></IonDatetime>
+          <IonDatetime displayFormat={displayFormat} placeholder="Select Date"  min="1981" value={startDate} onIonChange={e => setStartDate(e.detail.value)}></IonDatetime>
         </IonItem>
         
         <IonItem>
           <IonLabel>End Date ({displayFormat})</IonLabel>
-          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" value={endDate} onIonChange={e => setEndDate(e.detail.value)}></IonDatetime>
+          <IonDatetime displayFormat={displayFormat} placeholder="Select Date" min="1981" value={endDate} onIonChange={e => setEndDate(e.detail.value)}></IonDatetime>
         </IonItem>
         </IonList>
         
