@@ -142,7 +142,7 @@ const Graph  = ({data, status, parameter}) => {
             break;
         default:
           graphColor="#00BFFF";
-          graphLabel="Cloud Amount (Day)"
+          graphLabel="Cloud Coverage (Day)"
           break;
 
     }
