@@ -146,10 +146,21 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
             <IonSelect value={parameter} okText="Okay" cancelText="Dismiss" 
             onIonChange={e => checkClearSky(e)}>
               
+              //solar
               <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption>
+              <IonSelectOption value="ALLSKY_SFC_UV_INDEX">UV Exposure</IonSelectOption>
               <IonSelectOption value="TS" >Surface Temperature</IonSelectOption>
-              <IonSelectOption value="CLOUD_AMT">Cloud Amount</IonSelectOption>
+              //skies
+              <IonSelectOption value="CLOUD_AMT">Cloud Amount (All Times)</IonSelectOption>
+              {/* <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day)</IonSelectOption> //disable hourly */}
+              {/* <IonSelectOption value="CLOUD_AMT_NIGHT">Cloud Amount (Night)</IonSelectOption> //disable hourly */}
               <IonSelectOption value="CLRSKY_DAYS" disabled={clearSkyDisable}>Clear Days</IonSelectOption>
+              //wind
+              <IonSelectOption value="WSC">Wind Speed (Surface)</IonSelectOption>
+              <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption>
+              //precipitation
+              <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption> //rain precipitaion or water precipitation or just precipitation
+              <IonSelectOption value="PRECSNOLAND">Precipitation (Snow)</IonSelectOption>
 
             </IonSelect>
           </IonItem>

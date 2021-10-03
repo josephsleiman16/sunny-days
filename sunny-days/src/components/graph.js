@@ -7,7 +7,7 @@ const Graph  = ({data, status, parameter}) => {
 
     if(!data){return (<IonPage></IonPage>)};
     const timeLineData = data?.properties?.parameter[parameter]
-
+    // const unitVal = data?.p
     if(!timeLineData){return (<IonPage></IonPage>)};
 
     console.log('time line data',timeLineData);
@@ -107,6 +107,27 @@ const Graph  = ({data, status, parameter}) => {
         case "CLRSKY_DAYS":
             graphLabel="Clear Days"
             break;
+        case "ALLSKY_SFC_UV_INDEX":
+            graphLabel="UV Exposure"
+            break;
+        case "WSC":
+            graphLabel="Wind Speed (Surface)"
+            break;
+        case "WS50M":
+            graphLabel="Wind Speed (50 metres)"
+            break;
+        case "PRECTOTCORR":
+            graphLabel="Precipitation (Rain)"
+            break;
+        case "PRECSNOLAND":
+            graphLabel="Precipitation (Snow)"
+            break;
+        case "CLOUD_AMT_DAY":
+            graphLabel="Cloud Amount (Day)"
+            break;
+        case "CLOUD_AMT_NIGHT":
+            graphLabel="Cloud Amount (Night)"
+            break;
         default:
             graphLabel="Cloud Amount";
             break;
@@ -160,15 +181,15 @@ const Graph  = ({data, status, parameter}) => {
                     display:true,
                     title:{
                         display:true,
-                        text:"y axis",
+                        text:"UNITS", //The fetched JSON object has a property for units 
                         color: "black"
                     }
                 },
                 x: {
                     display:true,
                     title:{
-                        display:true,
-                        text:"x axis",
+                        display:false,
+                        text:"x saxi",
                         color: "black"
                     }
                 }
