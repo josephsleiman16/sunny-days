@@ -47,29 +47,32 @@ const Graph  = ({data, status, parameter}) => {
       let temp = 0;
       let counter = 0;
       let weekEnd;
+      let formatLabels = '';
+
+      //formatting labels to eg. 03 June 2021
       const days = labels.map(x => parseInt(x.substring(6,8)));
-      weekEnd = labels[labels.length-1];
+      formatLabels = theseMonths.map((x, i) => days[i]+' '+x + ' ' + years[i]);
+      
+      //calculating rolling weekly averages of values and labels going backwards
+      weekEnd = formatLabels[formatLabels.length-1];
       for (var i = values.length - 1; i >= 0; i--) {
         temp += values[i];
         counter +=1;
         if (counter == 7){
-          console.log(i);
           counter = 0;
           weekVals.push(temp/7);
           temp = 0;
-          weekLabels.push(labels[i] + ' - ' + weekEnd);
-          weekEnd = labels[i-1];
+          weekLabels.push(formatLabels[i] + ' - ' + weekEnd);
+          weekEnd = formatLabels[i-1];
         }
+      }
       if (counter!=0){
         weekVals.push(temp/counter);
-        weekLabels.push(labels[0] + ' - ' + weekEnd);
-      }
-    }      
-      console.log("lengthlabels", weekLabels.length);
-      console.log("length", values.length);
+        weekLabels.push(formatLabels[0] + ' - ' + weekEnd);
+      }     
+      //reversing back arrays
       theLabels = weekLabels.reverse();
       values = weekVals.reverse();
-      // theLabels = theseMonths.map((x, i) => days[i]+' '+x + ' ' + years[i]);
   }
     else if (labels[0].length===8){
         //daily
