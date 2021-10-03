@@ -150,7 +150,6 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
               <IonSelectOption value="TS" >Surface Temperature</IonSelectOption> 
 
               <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day Time)</IonSelectOption> 
-              <IonSelectOption value="CLRSKY_DAYS" disabled={clearSkyDisable}>Clear Days</IonSelectOption> 
 
               <IonSelectOption value="WS2M">Wind Speed (Surface)</IonSelectOption> 
               <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption> 

@@ -120,13 +120,9 @@ const Graph  = ({data, status, parameter}) => {
             graphLabel="Surface Temperature";
             graphColor="#DC143C";
             break;
-        case "CLRSKY_DAYS":
-            graphLabel="Clear Days"
-            graphColor="#00BFFF";
-            break;
         case "WS2M":
             graphLabel="Wind Speed (Surface)"
-            graphColor="#FF8C00";
+            graphColor="#7FFF00";
             break;
         case "WS50M":
             graphLabel="Wind Speed (50 metres)"
@@ -142,10 +138,10 @@ const Graph  = ({data, status, parameter}) => {
             break;
         case "RH2M":
             graphLabel="Humidity"
-            graphColor="#008000";
+            graphColor="#FF7F50";
             break;
         default:
-          graphColor="#7FFF00";
+          graphColor="#00BFFF";
           graphLabel="Cloud Amount (Day)"
           break;
 

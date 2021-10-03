@@ -6,7 +6,6 @@ import './Tab3.css';
 
 const Tab3 = () => {
   //NOTES:
-  // If data < 0 getting rid of datapoint or not plotting it
   // "Location" - use gps, pinpoint on map - failed
   // Delete Tab3 or use for parameter definitions
 
