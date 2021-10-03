@@ -143,10 +143,12 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
               <IonSelectOption value="ALLSKY_KT">Solar Irradiance</IonSelectOption> //amount of solar energy coming from all angles
               <IonSelectOption value="ALLSKY_SFC_UV_INDEX">UV Exposure</IonSelectOption> //units: dimensionless
               <IonSelectOption value="TS" >Surface Temperature</IonSelectOption> //units: degrees Celsius
+              {/* <IonSelectOption value="T2M" >Temperature (2 metres)</IonSelectOption> //units: degrees Celsius */}
+
               //skies
               <IonSelectOption value="CLOUD_AMT">Cloud Amount (All Times)</IonSelectOption> //units: %
-              {/* <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day)</IonSelectOption> //disable hourly */}
-              {/* <IonSelectOption value="CLOUD_AMT_NIGHT">Cloud Amount (Night)</IonSelectOption> //disable hourly */}
+              {/* <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day)</IonSelectOption> //disable hourly if we want to use */}
+              {/* <IonSelectOption value="CLOUD_AMT_NIGHT">Cloud Amount (Night)</IonSelectOption> //disable hourly if we want to use */}
               <IonSelectOption value="CLRSKY_DAYS" disabled={clearSkyDisable}>Clear Days</IonSelectOption> //units: days
               //wind - good for solar and wind
               <IonSelectOption value="WS2M">Wind Speed (Surface)</IonSelectOption> //units: m/s

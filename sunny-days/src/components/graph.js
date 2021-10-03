@@ -110,6 +110,9 @@ const Graph  = ({data, status, parameter}) => {
         case "TS":
             graphLabel="Surface Temperature";
             break;
+            // case "T2M":
+            //   graphLabel="Temperature (2 metres)";
+            //   break;
         case "CLRSKY_DAYS":
             graphLabel="Clear Days"
             break;
