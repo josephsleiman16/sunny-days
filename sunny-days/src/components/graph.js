@@ -23,6 +23,12 @@ const Graph  = ({data, status, parameter}) => {
     let values = Object.values(timeLineData);
     console.log("data:", values)
     console.log("labels:", labels)
+
+    let positiveValues = values.filter(x => x > -500);
+    let positiveLabels = labels.filter((x,i) => values[i] > -500);
+
+    console.log("positive1", positiveValues);
+    console.log("positive2",positiveLabels);
     //HOURLY YYYYMMDDHH = 10
     //DAILY YYYYMMDD = 8
     //WEEKLY YYYYMMDD = 8
@@ -34,15 +40,15 @@ const Graph  = ({data, status, parameter}) => {
 
     let theLabels= '';
 
-    const years = labels.map(x => x.substring(0,4));
-    const months = labels.map(x => parseInt(x.substring(4,6)));
+    const years = positiveLabels.map(x => x.substring(0,4));
+    const months = positiveLabels.map(x => parseInt(x.substring(4,6)));
     const theseMonths = months.map(x => monthNames[x-1]);
     
     if(status==="annually"){
         //annually
         let filterYears = years.filter((x,i) => months[i]===13);
         theLabels = filterYears.map((x,i) =>  x);
-        values = values.filter((x,i) => months[i]===13);
+        positiveValues = positiveValues.filter((x,i) => months[i]===13);
 
     }
     else if (status==="weekly"){
@@ -57,13 +63,13 @@ const Graph  = ({data, status, parameter}) => {
       let formatLabels = '';
 
       //formatting labels to eg. 03 June 2021
-      const days = labels.map(x => parseInt(x.substring(6,8)));
+      const days = positiveLabels.map(x => parseInt(x.substring(6,8)));
       formatLabels = theseMonths.map((x, i) => days[i]+' '+x + ' ' + years[i]);
       
       //calculating rolling weekly averages of values and labels going backwards
       weekEnd = formatLabels[formatLabels.length-1];
-      for (var i = values.length - 1; i >= 0; i--) {
-        temp += values[i];
+      for (var i = positiveValues.length - 1; i >= 0; i--) {
+        temp += positiveValues[i];
         counter +=1;
         if (counter === 7){
           counter = 0;
@@ -79,18 +85,18 @@ const Graph  = ({data, status, parameter}) => {
       }     
       //reversing back arrays
       theLabels = weekLabels.reverse();
-      values = weekVals.reverse();
+      positiveValues = weekVals.reverse();
   }
     else if (labels[0].length===8){
         //daily
-        const days = labels.map(x => parseInt(x.substring(6,8)));
+        const days = positiveLabels.map(x => parseInt(x.substring(6,8)));
         // date month year 
         theLabels = theseMonths.map((x, i) => days[i]+' '+x + ' ' + years[i]);
 
     } else if(labels[0].length===10){
         //Hourly
-        const days = labels.map(x => parseInt(x.substring(6,8)));
-        const hours = labels.map( x=> parseInt(x.substring(8,10)))         
+        const days = positiveLabels.map(x => parseInt(x.substring(6,8)));
+        const hours = positiveLabels.map( x=> parseInt(x.substring(8,10)))         
         const hoursTrue = hours.map( x=> x>=12 ? (x===12? x+'pm': (x-12)+'pm') : (x===0 ? x+12+'am': x+'am'));    
         theLabels = theseMonths.map((x, i) =>  hoursTrue[i]+' '+ days[i]+' '+x + ' ' + years[i]);
     }else{
@@ -98,11 +104,11 @@ const Graph  = ({data, status, parameter}) => {
         let filterLabels = months.filter(x => x<13);
         let filterYears = years.filter((x,i) => months[i]<13);
         theLabels = filterLabels.map((x,i) => monthNames[x-1] +' '+filterYears[i]);
-        values = values.filter((x,i) => months[i]<13);
+        positiveValues = positiveValues.filter((x,i) => months[i]<13);
     }
 
     console.log(theLabels);
-    console.log(values);
+    console.log(positiveValues);
     let graphLabel;
     let graphColor;
     switch(parameter){
@@ -155,7 +161,7 @@ const Graph  = ({data, status, parameter}) => {
         borderColor: graphColor,
         borderWidth: 1,
         pointRadius: 1,
-        data: values
+        data: positiveValues
         }
     ]
     }
