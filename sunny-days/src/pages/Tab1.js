@@ -141,20 +141,20 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
               //solar
               <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption> //amount of solar energy coming perpendicular to surface
               <IonSelectOption value="ALLSKY_KT">Solar Irradiance</IonSelectOption> //amount of solar energy coming from all angles
-              <IonSelectOption value="ALLSKY_SFC_UV_INDEX">UV Exposure</IonSelectOption>
-              <IonSelectOption value="TS" >Surface Temperature</IonSelectOption>
+              <IonSelectOption value="ALLSKY_SFC_UV_INDEX">UV Exposure</IonSelectOption> //units: dimensionless
+              <IonSelectOption value="TS" >Surface Temperature</IonSelectOption> //units: degrees Celsius
               //skies
-              <IonSelectOption value="CLOUD_AMT">Cloud Amount (All Times)</IonSelectOption>
+              <IonSelectOption value="CLOUD_AMT">Cloud Amount (All Times)</IonSelectOption> //units: %
               {/* <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day)</IonSelectOption> //disable hourly */}
               {/* <IonSelectOption value="CLOUD_AMT_NIGHT">Cloud Amount (Night)</IonSelectOption> //disable hourly */}
-              <IonSelectOption value="CLRSKY_DAYS" disabled={clearSkyDisable}>Clear Days</IonSelectOption>
-              //wind
-              <IonSelectOption value="WSC">Wind Speed (Surface)</IonSelectOption>
-              <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption> //wind good for solar and wind
+              <IonSelectOption value="CLRSKY_DAYS" disabled={clearSkyDisable}>Clear Days</IonSelectOption> //units: days
+              //wind - good for solar and wind
+              <IonSelectOption value="WS2M">Wind Speed (Surface)</IonSelectOption> //units: m/s
+              <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption> //units: m/s
               //precipitation
-              <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption>
-              <IonSelectOption value="PRECSNOLAND">Precipitation (Snow on Land)</IonSelectOption>
-              <IonSelectOption value="RH2M">Humidity</IonSelectOption> //bad for solar
+              <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption> /units: mm
+              <IonSelectOption value="PRECSNOLAND">Precipitation (Snow on Land)</IonSelectOption> /units: mm
+              <IonSelectOption value="RH2M">Humidity</IonSelectOption> //units: %, bad for solar
 
             </IonSelect>
           </IonItem>

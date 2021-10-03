@@ -116,7 +116,7 @@ const Graph  = ({data, status, parameter}) => {
         case "ALLSKY_SFC_UV_INDEX":
             graphLabel="UV Exposure"
             break;
-        case "WSC":
+        case "WS2M":
             graphLabel="Wind Speed (Surface)"
             break;
         case "WS50M":
