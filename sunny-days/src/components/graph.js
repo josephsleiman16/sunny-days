@@ -1,4 +1,4 @@
-import { IonContent, IonIcon, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { useState } from 'react';
 
 import { Line } from 'react-chartjs-2';
@@ -7,10 +7,15 @@ const Graph  = ({data, status, parameter}) => {
 
     if(!data){return (<IonPage></IonPage>)};
     const timeLineData = data?.properties?.parameter[parameter]; //gets dates and values
-    const unitVal = data?.parameters?.[parameter].units; //gets units
+    let unitVal; //gets units
 
     if(!timeLineData){return (<IonPage></IonPage>)};
-    if(!unitVal){return (<IonPage></IonPage>)}; //trying to fix issue when changing units after graph made(units error)
+
+    if(!data?.parameters?.[parameter].units)
+        {return (<IonPage></IonPage>)}
+    else{
+         unitVal= data?.parameters?.[parameter].units;
+    } 
     console.log('time line data',timeLineData);
     console.log("Units: ", unitVal);
 
@@ -33,15 +38,14 @@ const Graph  = ({data, status, parameter}) => {
     const months = labels.map(x => parseInt(x.substring(4,6)));
     const theseMonths = months.map(x => monthNames[x-1]);
     
-    if(status=="annually"){
+    if(status==="annually"){
         //annually
-        let filterLabels = months.filter(x => x==13);
-        let filterYears = years.filter((x,i) => months[i]==13);
+        let filterYears = years.filter((x,i) => months[i]===13);
         theLabels = filterYears.map((x,i) =>  x);
-        values = values.filter((x,i) => months[i]==13);
+        values = values.filter((x,i) => months[i]===13);
 
     }
-    else if (status=="weekly"){
+    else if (status==="weekly"){
       //weekly (YYYYMMDD)
       //01/01/21 - 08/01/2021
       //01 June 2021 - 08 June 2021
@@ -61,7 +65,7 @@ const Graph  = ({data, status, parameter}) => {
       for (var i = values.length - 1; i >= 0; i--) {
         temp += values[i];
         counter +=1;
-        if (counter == 7){
+        if (counter === 7){
           counter = 0;
           weekVals.push(temp/7);
           temp = 0;
@@ -69,7 +73,7 @@ const Graph  = ({data, status, parameter}) => {
           weekEnd = formatLabels[i-1];
         }
       }
-      if (counter!=0){
+      if (counter!==0){
         weekVals.push(temp/counter);
         weekLabels.push(formatLabels[0] + ' - ' + weekEnd);
       }     
@@ -87,7 +91,7 @@ const Graph  = ({data, status, parameter}) => {
         //Hourly
         const days = labels.map(x => parseInt(x.substring(6,8)));
         const hours = labels.map( x=> parseInt(x.substring(8,10)))         
-        const hoursTrue = hours.map( x=> x>=12 ? (x==12? x+'pm': (x-12)+'pm') : (x==0 ? x+12+'am': x+'am'));    
+        const hoursTrue = hours.map( x=> x>=12 ? (x===12? x+'pm': (x-12)+'pm') : (x===0 ? x+12+'am': x+'am'));    
         theLabels = theseMonths.map((x, i) =>  hoursTrue[i]+' '+ days[i]+' '+x + ' ' + years[i]);
     }else{
         //monthly
@@ -166,15 +170,10 @@ const Graph  = ({data, status, parameter}) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Tab 22</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Results</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <Line
           data={state}
           options={{
@@ -208,7 +207,6 @@ const Graph  = ({data, status, parameter}) => {
             }
           }}
         />
-        {/* <ExploreContainer name="Tab 2 page" /> */}
       </IonContent>
     </IonPage>
   );

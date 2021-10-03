@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonFab, IonFabButton, IonGrid, IonRow, IonCol, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonItemDivider, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
+import { IonButton, IonContent, IonRow, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
@@ -27,17 +27,17 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
   const [maxYear, setMaxYear] = useState(todayDate);
 
   //Error Logic
-  if(startDate && endDate && latitude && longitude && (startDate < endDate) && buttonState=="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
+  if(startDate && endDate && latitude && longitude && (startDate < endDate) && buttonState==="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
     setButtonState("false");
   }
-  if(buttonState=="false" && !(startDate && endDate && latitude && longitude && (startDate < endDate) && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180))){
+  if(buttonState==="false" && !(startDate && endDate && latitude && longitude && (startDate < endDate) && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180))){
     setButtonState("true");
   }
  
   function showPosition() {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+            var positionInfo = "Your current position is (Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude + ")";
             console.log(positionInfo);
             setLongitude(position.coords.longitude);
             setLatitude(position.coords.latitude);
@@ -95,7 +95,6 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     setData(info);
     
     localStorage.setItem( 'data', JSON.stringify(info));
-    let retData = localStorage.getItem('data');
   
    history.push('/tab2') //whats this do again?
 
@@ -138,26 +137,23 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
             <IonSelect value={parameter} okText="Okay" cancelText="Dismiss" 
             onIonChange={e => checkClearSky(e)}>
               
-              //solar
-              <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption> //amount of solar energy coming perpendicular to surface
-              <IonSelectOption value="ALLSKY_KT">Solar Irradiance</IonSelectOption> //amount of solar energy coming from all angles
-              <IonSelectOption value="ALLSKY_SFC_UV_INDEX">UV Exposure</IonSelectOption> //units: dimensionless
-              <IonSelectOption value="TS" >Surface Temperature</IonSelectOption> //units: degrees Celsius
-              {/* <IonSelectOption value="T2M" >Temperature (2 metres)</IonSelectOption> //units: degrees Celsius */}
+             
+              <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption>
+              <IonSelectOption value="ALLSKY_KT">Solar Irradiance</IonSelectOption>
+              <IonSelectOption value="ALLSKY_SFC_UV_INDEX">UV Exposure</IonSelectOption> 
+              <IonSelectOption value="TS" >Surface Temperature</IonSelectOption> 
 
-              //skies
-              <IonSelectOption value="CLOUD_AMT">Cloud Amount (All Times)</IonSelectOption> //units: %
-              {/* <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day)</IonSelectOption> //disable hourly if we want to use */}
-              {/* <IonSelectOption value="CLOUD_AMT_NIGHT">Cloud Amount (Night)</IonSelectOption> //disable hourly if we want to use */}
-              <IonSelectOption value="CLRSKY_DAYS" disabled={clearSkyDisable}>Clear Days</IonSelectOption> //units: days
-              //wind - good for solar and wind
-              <IonSelectOption value="WS2M">Wind Speed (Surface)</IonSelectOption> //units: m/s
-              <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption> //units: m/s
-              //precipitation
-              <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption> /units: mm
-              <IonSelectOption value="PRECSNOLAND">Precipitation (Snow on Land)</IonSelectOption> /units: mm
-              <IonSelectOption value="RH2M">Humidity</IonSelectOption> //units: %, bad for solar
+              <IonSelectOption value="CLOUD_AMT">Cloud Amount (All Times)</IonSelectOption> 
+              <IonSelectOption value="CLRSKY_DAYS" disabled={clearSkyDisable}>Clear Days</IonSelectOption> 
 
+              <IonSelectOption value="WS2M">Wind Speed (Surface)</IonSelectOption> 
+              <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption> 
+
+              <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption> 
+              <IonSelectOption value="PRECSNOLAND">Precipitation (Snow on Land)</IonSelectOption> 
+              <IonSelectOption value="RH2M">Humidity</IonSelectOption> 
+
+            
             </IonSelect>
           </IonItem>
 
@@ -207,9 +203,6 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
             <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat, status)}>View Results</IonButton>    
           </IonRow>
 
-
-        {/* <IonButton color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat)}>Press me</IonButton> */}
-        {/* <IonButton color="secondary" onClick={() => showPosition()}>Use my location</IonButton> */}
 
       </IonContent>
     </IonPage>
