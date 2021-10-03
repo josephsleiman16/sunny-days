@@ -6,8 +6,10 @@ import { Line } from 'react-chartjs-2';
 const Graph  = ({data, status, parameter}) => {
 
     if(!data){return (<IonPage></IonPage>)};
-    const timeLineData = data?.properties?.parameter[parameter]
-    // const unitVal = data?.p
+    const timeLineData = data?.properties?.parameter[parameter]; //gets dates and values
+    const unitVal = data?.parameters?.[parameter].units; //gets units
+
+    console.log("TEST UNIT VAL", unitVal);
     if(!timeLineData){return (<IonPage></IonPage>)};
 
     console.log('time line data',timeLineData);
@@ -181,7 +183,7 @@ const Graph  = ({data, status, parameter}) => {
                     display:true,
                     title:{
                         display:true,
-                        text:"UNITS", //The fetched JSON object has a property for units 
+                        text:unitVal, //The fetched JSON object has a property for units 
                         color: "black"
                     }
                 },
