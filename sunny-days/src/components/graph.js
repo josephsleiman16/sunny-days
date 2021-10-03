@@ -167,13 +167,6 @@ const Graph  = ({data, status, parameter}) => {
 
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 22</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
         <Line
           data={state}
           options={{
@@ -207,8 +200,6 @@ const Graph  = ({data, status, parameter}) => {
             }
           }}
         />
-      </IonContent>
-    </IonPage>
   );
 };
 
