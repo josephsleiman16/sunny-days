@@ -24,7 +24,6 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
   const todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+dd;
 
-  console.log(todayDate);
   const [maxYear, setMaxYear] = useState(todayDate);
 
   if(startDate && endDate && latitude && longitude && (startDate < endDate) && buttonState=="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
@@ -33,9 +32,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
   if(buttonState=="false" && !(startDate && endDate && latitude && longitude && (startDate < endDate) && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180))){
     setButtonState("true");
   }
-  console.log("display format = ", displayFormat);
-  console.log("Start: ", startDate);
-  console.log("End: ", endDate);
+ 
   function showPosition() {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -67,7 +64,6 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     else{
       setClearSkyDisable(false);
     }
-    console.log('longitude = ',longitude, 'start :',startDate);
 
   } 
   
@@ -82,9 +78,6 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
       start = start.replace(/-/g,'').slice(0,4);
       end = end.replace(/-/g,'').slice(0,4);
     }
-
-    console.log('date before edit: ',start);
-    console.log('date after edit ',start);
 
     let res;
     if (status=="weekly"){res="daily";}
@@ -102,11 +95,9 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     
     localStorage.setItem( 'data', JSON.stringify(info));
     let retData = localStorage.getItem('data');
-   // let test = JSON.parse(retData);
-   // console.log('test data',test);
-   history.push('/tab2')
-
-
+  
+   history.push('/tab2') //whats this do again?
+   
   }
 
   const checkClearSky= (e) =>{
