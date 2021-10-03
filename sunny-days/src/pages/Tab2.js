@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonRow } from '@ionic/react';
 import './Tab2.css';
 import { useState } from 'react';
 import Graph from "../components/graph"
@@ -18,7 +18,7 @@ const Tab2 =({data,setData, status, parameter}) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Results</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen scrollY={true}>
@@ -31,12 +31,12 @@ const Tab2 =({data,setData, status, parameter}) => {
         <div className="multiple-graphs">
         {parameter.map((singleParameter) =>{
           return (
-            <Graph
+            <><Graph
               data={data}
               status={status}
-              parameter={singleParameter}
-              />
-
+              parameter={singleParameter} />
+              <p></p>
+              </>
           )
         })
         }
