@@ -21,7 +21,8 @@ const Graph  = ({data, status, parameter}) => {
 
     const labels = Object.keys(timeLineData);
     let values = Object.values(timeLineData);
-
+    console.log("data:", values)
+    console.log("labels:", labels)
     //HOURLY YYYYMMDDHH = 10
     //DAILY YYYYMMDD = 8
     //WEEKLY YYYYMMDD = 8
@@ -32,7 +33,6 @@ const Graph  = ({data, status, parameter}) => {
                         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 
     let theLabels= '';
-    console.log('labesl: ',labels);
 
     const years = labels.map(x => x.substring(0,4));
     const months = labels.map(x => parseInt(x.substring(4,6)));

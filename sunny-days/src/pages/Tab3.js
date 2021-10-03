@@ -1,21 +1,14 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon} from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 
-import { navigateCircleOutline } from 'ionicons/icons';
 
 import './Tab3.css';
 
 const Tab3 = () => {
   //NOTES:
-  //temporalRes = "daily" or "hourly" or "monthly"
-  //latitude = string from -90 to 90 with 4 decimal places
-  //longitude = string from -180 to 180 with 4 decimal places
-  //startDate = string format: YYYYMMDD
-  //endDate = string format: YYYYMMDD
-
-  //Maybe if data < 0 getting rid of datapoint or not plotting it
-  // "Location" - use gps, pinpoint on map
-  // Delete Tab3??
+  // If data < 0 getting rid of datapoint or not plotting it
+  // "Location" - use gps, pinpoint on map - failed
+  // Delete Tab3 or use for parameter definitions
 
   return (
     <IonPage>
