@@ -199,8 +199,8 @@ const Graph  = ({data, status, parameter}) => {
                 x: {
                     display:true,
                     title:{
-                        display:false,
-                        text:"x saxi",
+                        display:true,
+                        text:"",
                         color: "black"
                     }
                 }
