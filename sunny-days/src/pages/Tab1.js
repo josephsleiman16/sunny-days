@@ -149,10 +149,11 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
               <IonSelectOption value="CLRSKY_DAYS" disabled={clearSkyDisable}>Clear Days</IonSelectOption>
               //wind
               <IonSelectOption value="WSC">Wind Speed (Surface)</IonSelectOption>
-              <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption>
+              <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption> //wind good for solar and wind
               //precipitation
-              <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption> //rain precipitaion or water precipitation or just precipitation
-              <IonSelectOption value="PRECSNOLAND">Precipitation (Snow)</IonSelectOption>
+              <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption>
+              <IonSelectOption value="PRECSNOLAND">Precipitation (Snow on Land)</IonSelectOption>
+              <IonSelectOption value="RH2M">Humidity</IonSelectOption> //bad for solar
 
             </IonSelect>
           </IonItem>

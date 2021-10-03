@@ -131,6 +131,9 @@ const Graph  = ({data, status, parameter}) => {
         case "CLOUD_AMT_NIGHT":
             graphLabel="Cloud Amount (Night)"
             break;
+        case "RH2M":
+            graphLabel="Humidity"
+            break;
         default:
             graphLabel="Cloud Amount";
             break;
