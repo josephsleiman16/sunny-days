@@ -152,7 +152,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
               <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption>
               <IonSelectOption value="TS" >Surface Temperature</IonSelectOption> 
 
-              <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day)</IonSelectOption> 
+              <IonSelectOption value="CLOUD_AMT_DAY">Cloud Coverage (Day)</IonSelectOption> 
 
               <IonSelectOption value="WS2M">Wind Speed (Surface)</IonSelectOption> 
               <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption> 
@@ -243,8 +243,8 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
                   <IonIcon icon={cloud} />
                 </ion-avatar>
                 <ion-label>
-                  <h2>Cloud Amount (Day)</h2>
-                  <p>Average percent of cloud amount during daylight</p>
+                  <h2>Cloud Coverage (Day)</h2>
+                  <p>Average percent of cloud cover during daylight</p>
                 </ion-label>
               </ion-item>
 
