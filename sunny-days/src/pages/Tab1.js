@@ -1,8 +1,8 @@
-import { IonButton, IonContent, IonRow, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
+import { IonButton, IonContent, IonRow, IonHeader, IonModal, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
-import { locateOutline, pinOutline } from 'ionicons/icons';
+import { locateOutline, helpCircle, helpCircleOutline, helpCircleSharp, help, helpOutline, helpSharp} from 'ionicons/icons';
 
 import './Tab1.css';
 
@@ -18,6 +18,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
   const [buttonState, setButtonState] =  useState("true");
   const [hourlyDisable, setHourlyDisable] = useState(false);
   const [clearSkyDisable, setClearSkyDisable] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   let today = new Date();
   let dd = today.getDate();
   if(dd <10){dd= '0'+dd;};
@@ -45,7 +46,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     } else {
         alert("Sorry, GPS inaccessible. Enable geolocation via settings.");
     }
-}
+  }
 
   const changeDisplay = (e)=> {
     setTemporalRes(e.detail.value)
@@ -67,7 +68,9 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     }
 
   } 
-
+  // function ParameterDefs() {
+  //   let modal;
+  // }
 
   const fetchJSON= async function(tempRes,lon, lat, start, end,displayFormat,status, parameter) {
  
@@ -172,9 +175,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
               onIonChange={e=>setLatitude(parseFloat(e.detail.value))}
             ></IonInput>
 
-            <IonButton color="danger">
-              <IonIcon icon={pinOutline} />
-            </IonButton>
+
 
             <IonButton color="secondary" onClick={() => showPosition()}>
               <IonIcon icon={locateOutline} />
@@ -205,7 +206,15 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
         
 
           <IonRow className="ion-justify-content-center">
-            <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat, status,parameter)}>View Results</IonButton>    
+            <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat, status,parameter)}>View Results</IonButton>   
+            <IonModal isOpen={showModal} cssClass='my-custom-class'>
+            <p>This is modal content</p>
+            <IonButton onClick={() => setShowModal(false)}>Close</IonButton>
+            </IonModal>
+
+            <IonButton color="danger" onClick={() => setShowModal(true)}>              
+              <IonIcon icon={helpCircleOutline} />
+            </IonButton>
           </IonRow>
 
 
