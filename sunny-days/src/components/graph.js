@@ -9,10 +9,11 @@ const Graph  = ({data, status, parameter}) => {
     const timeLineData = data?.properties?.parameter[parameter]; //gets dates and values
     const unitVal = data?.parameters?.[parameter].units; //gets units
 
-    console.log("TEST UNIT VAL", unitVal);
     if(!timeLineData){return (<IonPage></IonPage>)};
-
+    if(!unitVal){return (<IonPage></IonPage>)}; //trying to fix issue when changing parameter after graph (units error)
     console.log('time line data',timeLineData);
+    console.log("Units: ", unitVal);
+
     const labels = Object.keys(timeLineData);
     let values = Object.values(timeLineData);
 

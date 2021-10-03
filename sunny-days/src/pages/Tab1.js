@@ -26,6 +26,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
   const [maxYear, setMaxYear] = useState(todayDate);
 
+  //Error Logic
   if(startDate && endDate && latitude && longitude && (startDate < endDate) && buttonState=="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
     setButtonState("false");
   }
@@ -42,7 +43,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
             setLatitude(position.coords.latitude);
         });
     } else {
-        alert("Sorry, geolocation inaccessible.");
+        alert("Sorry, GPS inaccessible. Enable geolocation via settings.");
     }
 }
 
@@ -97,7 +98,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     let retData = localStorage.getItem('data');
   
    history.push('/tab2') //whats this do again?
-   
+
   }
 
   const checkClearSky= (e) =>{
@@ -124,8 +125,8 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
             onIonChange={e => changeDisplay(e)}>
               
               <IonSelectOption value="hourly" disabled={hourlyDisable} >Hourly</IonSelectOption>
-              <IonSelectOption value="weekly" >Weekly</IonSelectOption>
               <IonSelectOption value="daily" >Daily</IonSelectOption>
+              <IonSelectOption value="weekly" >Weekly</IonSelectOption>
               <IonSelectOption value="monthly">Monthly</IonSelectOption>
               <IonSelectOption value="annually">Annually</IonSelectOption>
 
