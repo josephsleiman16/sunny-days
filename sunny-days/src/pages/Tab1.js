@@ -2,7 +2,7 @@ import { IonButton, IonContent, IonRow, IonHeader, IonModal, IonPage, IonTitle, 
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 
-import { locateOutline, helpCircle, helpCircleOutline, helpCircleSharp, help, helpOutline, helpSharp} from 'ionicons/icons';
+import { snowOutline, locateOutline, helpCircle, helpCircleOutline, helpCircleSharp, help, helpOutline, thermometerOutline, rainy,sunny,cloud} from 'ionicons/icons';
 
 import './Tab1.css';
 
@@ -208,22 +208,97 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
           <IonRow className="ion-justify-content-center">
             <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat, status,parameter)}>View Results</IonButton>   
             <IonModal isOpen={showModal} cssClass='my-custom-class'>
-            <p>Solar Radiance - The incident solar energy reaching the surface of the Earth under all sky conditions
-            </p>
-            <p>Surface Temperature - The average temperature at the Earth's surface
-            </p>
-            <p>Cloud Amount (Day) - The average percent of cloud amount during daylight
-            </p> 
-            <p>Wind Speed (Surface) - The average wind speed at 2 metres above the Earth's surface
-            </p>
-            <p>Wind Speed (50 metres) - The average wind speed at 50 metres above the Earth's surface
-            </p>
-            <p>Precipitation (Rain) - The average total precipitation at the Earth's surface in water mass
-            </p>
-            <p>Precipitation (Snow on Land) - The snow precipitation only over land at the Earth's surface
-            </p>
-            <p>Humidity - The ratio of the mass of water vapor to the total mass of air at 2 meters above the Earth's surface
-            </p>
+            <ion-content fullscreen>
+            <ion-list>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <IonIcon icon={sunny} />
+                </ion-avatar>
+                <ion-label>
+
+                  <h2>Solar Radiance</h2>
+                  <p>The incident solar energy reaching the surface of the Earth under all sky conditions</p>
+
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <IonIcon icon={thermometerOutline} />
+                </ion-avatar>
+                <ion-label>
+
+                  <h2>Surface Temperature</h2>
+                  <p>The average temperature at the Earth's surface</p>
+                  
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-avatar slot="start">
+                  <IonIcon icon={cloud} />
+                </ion-avatar>
+                <ion-label>
+                  <h2>Cloud Amount (Day)</h2>
+                  <p>The average percent of cloud amount during daylight</p>
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-avatar slot="start">
+                  <i class="bi bi-wind"></i>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Wind Speed (Surface)</h2>
+                  <p>The average wind speed at 2 metres above the Earth's surface</p>
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-avatar slot="start">
+                  <IonIcon icon={rainy} />
+                </ion-avatar>
+                <ion-label>
+                  <h2>Wind Speed (50 metres)</h2>
+                  <p>The average wind speed at 50 metres above the Earth's surface</p>
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-avatar slot="start">
+                  <IonIcon icon={rainy} />
+                </ion-avatar>
+                <ion-label>
+                  <h2>Precipitation (Rain)</h2>
+                  <p>The average total precipitation at the Earth's surface in water mass</p>
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-avatar slot="start">
+                  <IonIcon icon={snowOutline} />
+
+                </ion-avatar>
+
+                <ion-label>
+                  <h2>Precipitation (Snow on Land)</h2>
+                  <p>The snow precipitation only over land at the Earth's surface</p>
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="./avatar-samwise.jpg"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Humidity</h2>
+                  <p>The ratio of the mass of water vapor to the total mass of air at 2 meters above the Earth's surface</p>
+                </ion-label>
+              </ion-item>
+
+            </ion-list>
+          </ion-content>
+
+    
             <IonButton onClick={() => setShowModal(false)}>Close</IonButton>
             </IonModal>
 
