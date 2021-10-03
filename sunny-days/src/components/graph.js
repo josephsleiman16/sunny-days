@@ -104,49 +104,55 @@ const Graph  = ({data, status, parameter}) => {
     console.log(theLabels);
     console.log(values);
     let graphLabel;
+    let graphColor;
     switch(parameter){
         case "ALLSKY_SFC_SW_DWN":
             graphLabel="Solar Radiance";
+            graphColor="#DC143C";
             break;
          case "ALLSKY_KT":
             graphLabel="Solar Irradiance";
+            graphColor="#FFD700";
             break;         
         case "TS":
             graphLabel="Surface Temperature";
+            graphColor="#FF1493";
             break;
             // case "T2M":
             //   graphLabel="Temperature (2 metres)";
             //   break;
         case "CLRSKY_DAYS":
             graphLabel="Clear Days"
+            graphColor="#7FFF00";
             break;
         case "ALLSKY_SFC_UV_INDEX":
             graphLabel="UV Exposure"
+            graphColor="#00FF7";
             break;
         case "WS2M":
             graphLabel="Wind Speed (Surface)"
+            graphColor="#FF8C00";
             break;
         case "WS50M":
             graphLabel="Wind Speed (50 metres)"
+            graphColor="#191970";
             break;
         case "PRECTOTCORR":
             graphLabel="Precipitation (Rain)"
+            graphColor="#2F4F4F";
             break;
         case "PRECSNOLAND":
             graphLabel="Precipitation (Snow on Land)"
-            break;
-        case "CLOUD_AMT_DAY":
-            graphLabel="Cloud Amount (Day)"
-            break;
-        case "CLOUD_AMT_NIGHT":
-            graphLabel="Cloud Amount (Night)"
+            graphColor="#8B008B";
             break;
         case "RH2M":
             graphLabel="Humidity"
+            graphColor="#008000";
             break;
         default:
-            graphLabel="Cloud Amount";
-            break;
+          graphColor="#00BFFF";
+          graphLabel="Cloud Amount (Day)"
+          break;
 
     }
     const state = {
@@ -156,8 +162,8 @@ const Graph  = ({data, status, parameter}) => {
         label: graphLabel, 
         fill: false,
         lineTension: 0.5,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: graphColor,
+        borderColor: graphColor,
         borderWidth: 1,
         pointRadius: 1,
         data: values
@@ -167,13 +173,6 @@ const Graph  = ({data, status, parameter}) => {
 
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
         <Line
           data={state}
           options={{
@@ -207,8 +206,6 @@ const Graph  = ({data, status, parameter}) => {
             }
           }}
         />
-      </IonContent>
-    </IonPage>
   );
 };
 
