@@ -1,6 +1,6 @@
 import { Redirect, Route } from 'react-router-dom';
 import { useState } from 'react';
-import { search, barChart, analytics} from 'ionicons/icons';
+import { search, barChart, help, helpCircle, helpCircleOutline, helpOutline} from 'ionicons/icons';
 
 import {
   IonApp,
@@ -69,7 +69,7 @@ const App = () => {
             <IonLabel>Tab 2</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={analytics} />
+            <IonIcon icon={helpCircle} />
             <IonLabel>Tab 3</IonLabel>
           </IonTabButton>
         </IonTabBar>

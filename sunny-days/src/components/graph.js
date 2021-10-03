@@ -170,7 +170,7 @@ const Graph  = ({data, status, parameter}) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 22</IonTitle>
+          <IonTitle>Tab 2</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

@@ -31,7 +31,6 @@ const Tab3 = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 3 page" />
-        <IonIcon icon={navigateCircleOutline}/>
 
       </IonContent>
     </IonPage>
