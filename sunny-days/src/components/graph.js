@@ -104,6 +104,9 @@ const Graph  = ({data, status, parameter}) => {
         case "ALLSKY_SFC_SW_DWN":
             graphLabel="Solar Radiance";
             break;
+         case "ALLSKY_KT":
+            graphLabel="Solar Irradiance";
+            break;         
         case "TS":
             graphLabel="Surface Temperature";
             break;
@@ -123,7 +126,7 @@ const Graph  = ({data, status, parameter}) => {
             graphLabel="Precipitation (Rain)"
             break;
         case "PRECSNOLAND":
-            graphLabel="Precipitation (Snow)"
+            graphLabel="Precipitation (Snow on Land)"
             break;
         case "CLOUD_AMT_DAY":
             graphLabel="Cloud Amount (Day)"

@@ -139,7 +139,8 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
             onIonChange={e => checkClearSky(e)}>
               
               //solar
-              <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption>
+              <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption> //amount of solar energy coming perpendicular to surface
+              <IonSelectOption value="ALLSKY_KT">Solar Irradiance</IonSelectOption> //amount of solar energy coming from all angles
               <IonSelectOption value="ALLSKY_SFC_UV_INDEX">UV Exposure</IonSelectOption>
               <IonSelectOption value="TS" >Surface Temperature</IonSelectOption>
               //skies
