@@ -40,13 +40,36 @@ const Graph  = ({data, status, parameter}) => {
     }
     else if (status=="weekly"){
       //weekly (YYYYMMDD)
-      let weekvals;
+      //01/01/21 - 08/01/2021
+      //01 June 2021 - 08 June 2021
+      let weekVals = [];
+      let weekLabels = [];
+      let temp = 0;
+      let counter = 0;
+      let weekEnd;
       const days = labels.map(x => parseInt(x.substring(6,8)));
-      weekvals = 
-      startDate = labels[0];
-      endDate = labels[-1];
-
-      theLabels = theseMonths.map((x, i) => days[i]+' '+x + ' ' + years[i]);
+      weekEnd = labels[labels.length-1];
+      for (var i = values.length - 1; i >= 0; i--) {
+        temp += values[i];
+        counter +=1;
+        if (counter == 7){
+          console.log(i);
+          counter = 0;
+          weekVals.push(temp/7);
+          temp = 0;
+          weekLabels.push(labels[i] + ' - ' + weekEnd);
+          weekEnd = labels[i-1];
+        }
+      if (counter!=0){
+        weekVals.push(temp/counter);
+        weekLabels.push(labels[0] + ' - ' + weekEnd);
+      }
+    }      
+      console.log("lengthlabels", weekLabels.length);
+      console.log("length", values.length);
+      theLabels = weekLabels.reverse();
+      values = weekVals.reverse();
+      // theLabels = theseMonths.map((x, i) => days[i]+' '+x + ' ' + years[i]);
   }
     else if (labels[0].length===8){
         //daily
