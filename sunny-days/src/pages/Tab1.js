@@ -27,10 +27,10 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
   const [maxYear, setMaxYear] = useState(todayDate);
 
   //Error Logic
-  if(startDate && endDate && latitude && longitude && (startDate < endDate) && buttonState==="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
+  if(startDate && endDate && parameter.length > 0 && latitude && longitude && (startDate < endDate) && buttonState==="true" && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180)){
     setButtonState("false");
   }
-  if(buttonState==="false" && !(startDate && endDate && latitude && longitude && (startDate < endDate) && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180))){
+  if(buttonState==="false" && !(startDate && endDate && parameter.length > 0 && latitude && longitude && (startDate < endDate) && (latitude < 90) && (latitude > -90) && (longitude > -180) && (longitude < 180))){
     setButtonState("true");
   }
  
