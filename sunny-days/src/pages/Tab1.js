@@ -217,7 +217,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
                 <ion-label>
 
                   <h2>Solar Radiance</h2>
-                  <p>The incident solar energy reaching the surface of the Earth under all sky conditions</p>
+                  <p>Incident solar energy reaching the surface of the Earth under all sky conditions</p>
 
                 </ion-label>
               </ion-item>
@@ -228,7 +228,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
                 <ion-label>
 
                   <h2>Surface Temperature</h2>
-                  <p>The average temperature at the Earth's surface</p>
+                  <p>Average temperature at the Earth's surface</p>
                   
                 </ion-label>
               </ion-item>
@@ -239,7 +239,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
                 </ion-avatar>
                 <ion-label>
                   <h2>Cloud Amount (Day)</h2>
-                  <p>The average percent of cloud amount during daylight</p>
+                  <p>Average percent of cloud amount during daylight</p>
                 </ion-label>
               </ion-item>
 
@@ -249,7 +249,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
                 </ion-avatar>
                 <ion-label>
                   <h2>Wind Speed (Surface)</h2>
-                  <p>The average wind speed at 2 metres above the Earth's surface</p>
+                  <p>Average wind speed at 2 metres above the Earth's surface</p>
                 </ion-label>
               </ion-item>
 
@@ -259,7 +259,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
                 </ion-avatar>
                 <ion-label>
                   <h2>Wind Speed (50 metres)</h2>
-                  <p>The average wind speed at 50 metres above the Earth's surface</p>
+                  <p>Average wind speed at 50 metres above the Earth's surface</p>
                 </ion-label>
               </ion-item>
 
@@ -269,7 +269,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
                 </ion-avatar>
                 <ion-label>
                   <h2>Precipitation (Rain)</h2>
-                  <p>The average total precipitation at the Earth's surface in water mass</p>
+                  <p>Average total precipitation at the Earth's surface in water mass</p>
                 </ion-label>
               </ion-item>
 
@@ -281,7 +281,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
                 <ion-label>
                   <h2>Precipitation (Snow on Land)</h2>
-                  <p>The snow precipitation only over land at the Earth's surface</p>
+                  <p>Snow precipitation only over land at the Earth's surface</p>
                 </ion-label>
               </ion-item>
 
@@ -291,7 +291,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
                 </ion-avatar>
                 <ion-label>
                   <h2>Humidity</h2>
-                  <p>The ratio of the mass of water vapor to the total mass of air at 2 meters above the Earth's surface</p>
+                  <p>Ratio of water vapor mass to total air mass 2 meters above the Earth's surface</p>
                 </ion-label>
               </ion-item>
 
