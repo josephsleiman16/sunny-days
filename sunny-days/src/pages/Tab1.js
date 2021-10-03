@@ -147,8 +147,6 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
               
              
               <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption>
-              <IonSelectOption value="ALLSKY_KT">Solar Irradiance</IonSelectOption>
-              <IonSelectOption value="ALLSKY_SFC_UV_INDEX">UV Exposure</IonSelectOption> 
               <IonSelectOption value="TS" >Surface Temperature</IonSelectOption> 
 
               <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day Time)</IonSelectOption> 

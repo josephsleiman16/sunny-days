@@ -108,26 +108,15 @@ const Graph  = ({data, status, parameter}) => {
     switch(parameter){
         case "ALLSKY_SFC_SW_DWN":
             graphLabel="Solar Radiance";
-            graphColor="#DC143C";
-            break;
-         case "ALLSKY_KT":
-            graphLabel="Solar Irradiance";
             graphColor="#FFD700";
-            break;         
+            break;       
         case "TS":
             graphLabel="Surface Temperature";
-            graphColor="#FF1493";
+            graphColor="#DC143C";
             break;
-            // case "T2M":
-            //   graphLabel="Temperature (2 metres)";
-            //   break;
         case "CLRSKY_DAYS":
             graphLabel="Clear Days"
-            graphColor="#7FFF00";
-            break;
-        case "ALLSKY_SFC_UV_INDEX":
-            graphLabel="UV Exposure"
-            graphColor="#00FF7";
+            graphColor="#00BFFF";
             break;
         case "WS2M":
             graphLabel="Wind Speed (Surface)"
@@ -139,7 +128,7 @@ const Graph  = ({data, status, parameter}) => {
             break;
         case "PRECTOTCORR":
             graphLabel="Precipitation (Rain)"
-            graphColor="#2F4F4F";
+            graphColor="#FF1493";
             break;
         case "PRECSNOLAND":
             graphLabel="Precipitation (Snow on Land)"
@@ -150,7 +139,7 @@ const Graph  = ({data, status, parameter}) => {
             graphColor="#008000";
             break;
         default:
-          graphColor="#00BFFF";
+          graphColor="#7FFF00";
           graphLabel="Cloud Amount (Day)"
           break;
 
