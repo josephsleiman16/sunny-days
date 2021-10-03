@@ -1,8 +1,8 @@
 import { IonButton, IonContent, IonRow, IonHeader, IonModal, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList, IonDatetime, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
-
-import { snowOutline, locateOutline, helpCircle, helpCircleOutline, helpCircleSharp, help, helpOutline, thermometerOutline, rainy,sunny,cloud} from 'ionicons/icons';
+import { WiDaySunny, WiWindy, WiCloudyWindy, WiHumidity } from 'weather-icons-react';
+import { snowOutline, locateOutline, helpCircle, helpCircleOutline, helpCircleSharp, help, helpOutline, thermometerOutline, rainy,sunny,cloud, water} from 'ionicons/icons';
 
 import './Tab1.css';
 
@@ -210,6 +210,11 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
             <IonModal isOpen={showModal} cssClass='my-custom-class'>
             <ion-content fullscreen>
             <ion-list>
+              <IonItem>
+                <div className="parameter-title">
+                  <IonLabel>Parameter Definitions</IonLabel>
+                </div>
+              </IonItem>
               <ion-item>
                 <ion-avatar slot="start">
                   <IonIcon icon={sunny} />
@@ -245,7 +250,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
               <ion-item>
                 <ion-avatar slot="start">
-                  <i class="bi bi-wind"></i>
+                  <WiWindy size={24} color="#000"/>
                 </ion-avatar>
                 <ion-label>
                   <h2>Wind Speed (Surface)</h2>
@@ -255,8 +260,8 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
               <ion-item>
                 <ion-avatar slot="start">
-                  <IonIcon icon={rainy} />
-                </ion-avatar>
+                  <WiCloudyWindy size={24} color='#000' />                
+                  </ion-avatar>
                 <ion-label>
                   <h2>Wind Speed (50 metres)</h2>
                   <p>The average wind speed at 50 metres above the Earth's surface</p>
@@ -287,14 +292,13 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
               <ion-item>
                 <ion-avatar slot="start">
-                  <ion-img src="./avatar-samwise.jpg"/>
+                  <WiHumidity size={24} color='#000' />                
                 </ion-avatar>
                 <ion-label>
                   <h2>Humidity</h2>
                   <p>The ratio of the mass of water vapor to the total mass of air at 2 meters above the Earth's surface</p>
                 </ion-label>
               </ion-item>
-
             </ion-list>
           </ion-content>
 
