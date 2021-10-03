@@ -152,14 +152,14 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
               <IonSelectOption value="ALLSKY_SFC_SW_DWN">Solar Radiance</IonSelectOption>
               <IonSelectOption value="TS" >Surface Temperature</IonSelectOption> 
 
-              <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day Time)</IonSelectOption> 
+              <IonSelectOption value="CLOUD_AMT_DAY">Cloud Amount (Day)</IonSelectOption> 
 
               <IonSelectOption value="WS2M">Wind Speed (Surface)</IonSelectOption> 
               <IonSelectOption value="WS50M">Wind Speed (50 metres)</IonSelectOption> 
 
               <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption> 
               <IonSelectOption value="PRECSNOLAND">Precipitation (Snow on Land)</IonSelectOption> 
-              <IonSelectOption value="RH2M">Humidity</IonSelectOption>
+              <IonSelectOption value="QV2M">Humidity</IonSelectOption>
 
             
             </IonSelect>
@@ -208,7 +208,22 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
           <IonRow className="ion-justify-content-center">
             <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat, status,parameter)}>View Results</IonButton>   
             <IonModal isOpen={showModal} cssClass='my-custom-class'>
-            <p>This is modal content</p>
+            <p>Solar Radiance - The incident solar energy reaching the surface of the Earth under all sky conditions
+            </p>
+            <p>Surface Temperature - The average temperature at the Earth's surface
+            </p>
+            <p>Cloud Amount (Day) - The average percent of cloud amount during daylight
+            </p> 
+            <p>Wind Speed (Surface) - The average wind speed at 2 metres above the Earth's surface
+            </p>
+            <p>Wind Speed (50 metres) - The average wind speed at 50 metres above the Earth's surface
+            </p>
+            <p>Precipitation (Rain) - The average total precipitation at the Earth's surface in water mass
+            </p>
+            <p>Precipitation (Snow on Land) - The snow precipitation only over land at the Earth's surface
+            </p>
+            <p>Humidity - The ratio of the mass of water vapor to the total mass of air at 2 meters above the Earth's surface
+            </p>
             <IonButton onClick={() => setShowModal(false)}>Close</IonButton>
             </IonModal>
 

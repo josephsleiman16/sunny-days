@@ -136,7 +136,7 @@ const Graph  = ({data, status, parameter}) => {
             graphLabel="Precipitation (Snow on Land)"
             graphColor="#8B008B";
             break;
-        case "RH2M":
+        case "QV2M":
             graphLabel="Humidity"
             graphColor="#FF7F50";
             break;
