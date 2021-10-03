@@ -1,5 +1,5 @@
 # SpaceApps
-NASA Hackathon 2021: "You Are My Sunshine" Challenge 
+NASA Hackathon 2021: "You Are My Sunshine" Challenge (9:00 02/10/21 - 11:59 03/10/21)
 
 Sunny Days Mobile Application developed via JavaScript and Ion React frameworks.
 
