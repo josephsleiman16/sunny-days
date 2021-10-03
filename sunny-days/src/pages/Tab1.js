@@ -59,7 +59,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     }
     setStatus(e.detail.value);
 
-    if(e.detail.value=="hourly"){
+    if(e.detail.value==="hourly"){
       setClearSkyDisable(true);
     }
     else{
@@ -67,9 +67,9 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     }
 
   } 
-  
 
-  const fetchJSON= async function(tempRes,lon, lat, start, end,displayFormat,status) {
+
+  const fetchJSON= async function(tempRes,lon, lat, start, end,displayFormat,status, parameter) {
  
     if(displayFormat.length >4) {
       start = start.replace(/-/g,'').slice(0,8);
@@ -81,11 +81,18 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     }
 
     let res;
-    if (status=="weekly"){res="daily";}
-    else if (status=="annually"){res = "monthly";}
+    if (status==="weekly"){res="daily";}
+    else if (status==="annually"){res = "monthly";}
     else{res=tempRes;};
 
-    let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + res + '/point?parameters='+ parameter +'&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
+    /*
+      give an array
+      unless its empty
+      join them per element with a comma
+    */
+    let combineParameter = parameter.join();
+
+    let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + res + '/point?parameters='+ combineParameter +'&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
 
     
     console.log(apiUrl)
@@ -101,8 +108,9 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
   }
 
   const checkClearSky= (e) =>{
+    console.log("parameter selection : ", e.detail.value);
     setParameter(e.detail.value);
-    if(e.detail.value=="CLRSKY_DAYS"){setHourlyDisable(true)}
+    if(e.detail.value==="CLRSKY_DAYS"){setHourlyDisable(true)}
     else{
       setHourlyDisable(false);
     }
@@ -134,7 +142,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
           <IonItem>
             <IonLabel>Select Parameter</IonLabel>
-            <IonSelect value={parameter} okText="Okay" cancelText="Dismiss" 
+            <IonSelect value={parameter} multiple={true} okText="Okay" cancelText="Dismiss" 
             onIonChange={e => checkClearSky(e)}>
               
              
@@ -151,7 +159,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
 
               <IonSelectOption value="PRECTOTCORR">Precipitation (Rain)</IonSelectOption> 
               <IonSelectOption value="PRECSNOLAND">Precipitation (Snow on Land)</IonSelectOption> 
-              <IonSelectOption value="RH2M">Humidity</IonSelectOption> 
+              <IonSelectOption value="RH2M">Humidity</IonSelectOption>
 
             
             </IonSelect>
@@ -200,7 +208,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
         
 
           <IonRow className="ion-justify-content-center">
-            <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat, status)}>View Results</IonButton>    
+            <IonButton disabled={buttonState} color="primary" onClick={() => fetchJSON(temporalRes,longitude,latitude,startDate,endDate, displayFormat, status,parameter)}>View Results</IonButton>    
           </IonRow>
 
 
