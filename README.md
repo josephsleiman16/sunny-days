@@ -3,7 +3,7 @@ NASA Hackathon 2021: "You Are My Sunshine" Challenge (9:00 02/10/21 - 11:59 03/1
 
 Sunny Days Mobile Application developed via JavaScript and Ion React frameworks.
 
-Uses NASA's POWER web portal service and API to access meteorological data for the last 40 years and displays the information in a graphical format (Chart.js) as per the user's requested parameters. 
+Uses NASA's POWER web portal service (https://power.larc.nasa.gov/data-access-viewer/) and API to access meteorological data for the last 40 years and displays the information in a graphical format (Chart.js) as per the user's requested parameters. 
 
 https://dreamy-neumann-d5baec.netlify.app/ - link to view deployed online build of our app
 
