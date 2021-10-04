@@ -98,7 +98,20 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     let apiUrl = 'https://cors-anywhere.herokuapp.com/https://power.larc.nasa.gov/api/temporal/' + res + '/point?parameters='+ combineParameter +'&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
     console.log(apiUrl)
     // const response = await fetch(apiUrl,{ "mode": "no-cors",});
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl)
+
+    if (!response.ok) {
+      let a=document.createElement('a');
+      a.target='_blank';
+      a.href='https://cors-anywhere.herokuapp.com/corsdemo';
+
+      //then use this code for alert
+      if (window.confirm('Ok to request access to NASA POWER data, Cancel to stay here'))
+      {
+      a.click();
+      };
+      //alert("Click this link https://cors-anywhere.herokuapp.com/corsdemo and request proxy access to visualise graphs");
+    }
     console.log("test", response)
     const data = await response.json();
     const info = await data;
