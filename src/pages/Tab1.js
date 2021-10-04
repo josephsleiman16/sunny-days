@@ -95,7 +95,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     */
     let combineParameter = parameter.join();
 
-    let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + res + '/point?parameters='+ combineParameter +'&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
+    let apiUrl = 'https://cors-anywhere.herokuapp.com/https://power.larc.nasa.gov/api/temporal/' + res + '/point?parameters='+ combineParameter +'&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
 
     
     console.log(apiUrl)
