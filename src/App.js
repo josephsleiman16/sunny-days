@@ -37,8 +37,8 @@ import './theme/variables.css';
 const App = () => {
   
   const [data,setData] = useState();
-  const [status, setStatus] = useState('daily');
-  const [parameter, setParameter] = useState(['ALLSKY_SFC_SW_DWN'])
+  const [status, setStatus] = useState(null);
+  const [parameter, setParameter] = useState([null])
   return (
   <IonApp>
     <IonReactRouter>

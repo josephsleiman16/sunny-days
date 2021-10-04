@@ -2,7 +2,7 @@ import { IonButton, IonContent, IonRow, IonHeader, IonModal, IonPage, IonTitle, 
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { WiDaySunny, WiWindy, WiCloudyWindy, WiHumidity } from 'weather-icons-react';
-import { snowOutline, locateOutline, helpCircle, helpCircleOutline, helpCircleSharp, help, helpOutline, thermometerOutline, rainy,sunny,cloud, water} from 'ionicons/icons';
+import { snowOutline, locateOutline, helpCircleOutline, thermometerOutline, rainy,sunny,cloud} from 'ionicons/icons';
 
 import './Tab1.css';
 
@@ -12,7 +12,7 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
   const [latitude, setLatitude] = useState(null);
   const [startDate, setStartDate] =  useState(null);
   const [endDate, setEndDate] =  useState(null);
-  const [temporalRes, setTemporalRes] = useState('daily');
+  const [temporalRes, setTemporalRes] = useState(null);
   const [displayFormat, setDisplayFormat] = useState('YYYY MM DD');
 	const history = useHistory()
   const [buttonState, setButtonState] =  useState("true");
@@ -95,18 +95,18 @@ const Tab1 = ({data,setData, status, setStatus,parameter, setParameter}) => {
     */
     let combineParameter = parameter.join();
 
-    let apiUrl = 'https://power.larc.nasa.gov/api/temporal/' + res + '/point?parameters='+ combineParameter +'&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
-
-    
+    let apiUrl = 'https://cors-anywhere.herokuapp.com/https://power.larc.nasa.gov/api/temporal/' + res + '/point?parameters='+ combineParameter +'&community=RE&longitude=' + lon + '&latitude=' + lat + '&start=' + start + '&end=' + end + '&format=JSON';
     console.log(apiUrl)
-    const response = fetch(apiUrl);
-    const data = (await response).json();
+    // const response = await fetch(apiUrl,{ "mode": "no-cors",});
+    const response = await fetch(apiUrl);
+    console.log("test", response)
+    const data = await response.json();
     const info = await data;
     setData(info);
     
     localStorage.setItem( 'data', JSON.stringify(info));
   
-   history.push('/tab2') //whats this do again?
+   history.push('/tab2') //redirect to Tab 2
 
   }
 
