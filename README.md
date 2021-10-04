@@ -5,7 +5,7 @@ Sunny Days Mobile Application developed via JavaScript and Ion React frameworks.
 
 Uses NASA's POWER web portal service (https://power.larc.nasa.gov/data-access-viewer/) and API to access meteorological data for the last 40 years and displays the information in a graphical format (Chart.js) as per the user's requested parameters. 
 
-https://dreamy-archimedes-a688a4.netlify.app/- link to view deployed online build of our app
+https://dreamy-archimedes-a688a4.netlify.app/ - link to view deployed online build of our app
 
 https://drive.google.com/file/d/1GO2sJC9kO2ba4yzDyCicDTI_oCVMsS11/view?usp=sharing - link to Video demo of Sunny Days app functionality
 
